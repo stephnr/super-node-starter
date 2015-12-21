@@ -1,0 +1,2 @@
+web: nodemon server/web.js
+worker: nodemon worker/manager.js
