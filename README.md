@@ -1,6 +1,6 @@
 ## node-starter
 
-[![Code Climate](https://codeclimate.com/repos/567779db7df1497f6c004c1d/badges/e873373aad89c2eca43e/gpa.svg)](https://codeclimate.com/repos/567779db7df1497f6c004c1d/feed) [![Circle CI](https://circleci.com/gh/Stephn-R/super-node-starter.svg?style=svg&circle-token=15cb369d08b433d47648e998cf8eac8e369ca858)](https://circleci.com/gh/Stephn-R/super-node-starter)
+[![Code Climate](https://codeclimate.com/repos/567779db7df1497f6c004c1d/badges/e873373aad89c2eca43e/gpa.svg)](https://codeclimate.com/repos/567779db7df1497f6c004c1d/feed) [![Circle CI](https://circleci.com/gh/Stephn-R/super-node-starter.svg?style=svg&circle-token=15cb369d08b433d47648e998cf8eac8e369ca858)](https://circleci.com/gh/Stephn-R/super-node-starter) [![dependencies](https://david-dm.org/stephn-r/super-node-starter.svg)](https://david-dm.org/stephn-r/super-node-starter) [![devDependencies](https://david-dm.org/stephn-r/super-node-starter/dev-status.svg)](https://david-dm.org/stephn-r/super-node-starter#info=devDependencies)
 
 A complete NodeJS starter template. This template is designed to give any NodeJS project an extreme running start that includes some of the most common features vital to the Client/Server relationship model while providing various other tools, and resources for quickly building out any part of the server development stack.
 
