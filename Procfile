@@ -1,2 +1,1 @@
-web: npm run-script heroku_start
-worker: node worker/manager.js
+web: node build/web.js

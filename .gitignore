@@ -19,3 +19,17 @@ node_modules
 
 # Files
 npm-debug.log
+
+# Typescript
+typings/
+build/
+
+# Documentation
+documentation/
+
+# Bower
+client/public/vendor
+client/public/zip
+
+# Database
+config/config.js

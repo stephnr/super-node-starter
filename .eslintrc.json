@@ -25,7 +25,7 @@
   },
 
   "env": {
-    "browser": false,
+    "browser": true,
     "node": true,
     "commonjs": false,
     "worker": false,
@@ -48,7 +48,9 @@
     "es6": true
   },
 
-  "globals": {},
+  "globals": {
+    "angular": true
+  },
 
   "plugins": [],
 
@@ -109,7 +111,7 @@
     "no-case-declarations": 2,
     "no-div-regex": 0,
     "no-else-return": 0,
-    "no-empty-label": 2,
+    "no-labels": 2,
     "no-empty-pattern": 2,
     "no-eq-null": 2,
     "no-eval": 2,
@@ -140,7 +142,7 @@
     "no-new": 1,
     "no-octal-escape": 2,
     "no-octal": 2,
-    "no-param-reassign": 2,
+    "no-param-reassign": 0,
     "no-process-env": 0,
     "no-proto": 2,
     "no-redeclare": [1, {
@@ -279,7 +281,7 @@
     "one-var": 0,
     "operator-assignment": [2, "always"],
     "operator-linebreak": [1, "before", { "overrides": { "?": "after" } }],
-    "padded-blocks": [1, "never"],
+    "padded-blocks": [0, "never"],
     "quote-props": [0, "consistent-as-needed"],
     "quotes": [2, "single"],
     "require-jsdoc": [1, {
@@ -297,18 +299,16 @@
     "sort-vars": [1, {
       "ignoreCase": true
     }],
-    "space-before-keywords": [1, "always"],
     "space-after-keywords": 0,
     "space-before-blocks": [0, {
       "functions": "never",
       "keywords": "always"
     }],
-    "space-before-function-paren": [2, "never"],
+    "space-before-function-paren": [0, "never"],
     "space-in-parens": [0, "always"],
     "space-infix-ops": [0, {
       "int32Hint": false
     }],
-    "space-return-throw-case": 2,
     "space-unary-ops": [0, {
       "words": true,
       "nonwords": false
@@ -324,7 +324,7 @@
       "before": false,
       "after": true
     }],
-    "no-arrow-condition": 1,
+    "no-arrow-condition": 0,
     "no-class-assign": 2,
     "no-const-assign": 2,
     "no-dupe-class-members": 2,
