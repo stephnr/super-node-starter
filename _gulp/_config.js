@@ -32,7 +32,7 @@ cfg.globs.views = '**/*.{ejs,html,htm}';
 
 cfg.files = {};
 cfg.files.views = `./src/client/views/${cfg.globs.views}`;
-cfg.files.mainApp = './src/client/public/js/main.js';
+cfg.files.mainApp = './src/client/public/js/app.js';
 cfg.files.angular = `./src/client/public/js/${cfg.globs.allJS}`;
 cfg.files.sass = `./src/client/public/scss/${cfg.globs.allSass}`;
 

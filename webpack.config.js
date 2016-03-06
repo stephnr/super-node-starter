@@ -23,8 +23,8 @@ module.exports = {
     /*----------- LOADERS -----------*/
     loaders: [
       { test: /\.scss$/, loader: 'style!css?sourceMap!postcss!sass?sourceMap' },
-      { test: /\.css$/, loader: 'style!css!postcss' },
-      { test: /\.png$/, loader: 'url?mimetype=image/png' }
+      { test: /\.css$/, loader:  'style!css!postcss' },
+      { test: /\.png$/, loader:  'url?mimetype=image/png' }
     ]
   },
   /*=============================================>>>>>
@@ -58,6 +58,5 @@ module.exports = {
   /*= End of PLUGINS =*/
   /*=============================================<<<<<*/
 
-  devtool: 'eval',
-  // watch:   true
+  devtool: 'eval'
 };

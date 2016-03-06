@@ -99,6 +99,7 @@ export = () => {
     log.debug(`Preparing new user with API Token: ${req.body.token}`);
     // Create new record
     Users.create(req.body).then(user => {
+      log.debug(`--->>> New User Created: ${user.get('token')}`);
       return Handles.CREATED(res, 'Successfully created new User', _.omit(user.toJSON(), ['password', 'id', 'updated_at', 'created_at']));
     }).catch((err: sequelize.BaseError) => {
       log.debug(err.message);
@@ -146,16 +147,17 @@ export = () => {
   router.get('/user', requireAuth, (req: express.Request, res: express.Response) => {
     const token = req.user || req.headers['authorization'];
 
-    // TODO: Sequelize fetch user details
-    // User.where('token', token).fetch().then((user: bookshelf.Model) => {
-    //   if (req.user !== null) {
-    //     // Found user
-    //     return Handles.SUCCESS(res, 'Found User', _.omit(user.toJSON(), ['password', 'id', 'updated_at', 'created_at']));
-    //   } else {
-    //     // No user exists
-    //     return Handles.BAD_REQUEST(res, 'No user found', null);
-    //   }
-    // });
+    Users.findOne({
+      where: { token: token }
+    }).then(user => {
+      if (req.user !== null) {
+        // Found user
+        return Handles.SUCCESS(res, 'Found User', _.omit(user.toJSON(), ['password', 'id', 'updated_at', 'created_at']));
+      } else {
+        // No user exists
+        return Handles.BAD_REQUEST(res, 'No user found', null);
+      }
+    });
   });
 
   /**
@@ -170,89 +172,20 @@ export = () => {
     if (req.body.password) {
       return Handles.BAD_REQUEST(res, 'Password Field is not updateable. Please use the /update-password endpoint', null);
     } else {
-      // TODO: Sequelize Update User
-      // User.where('token', req.headers['authorization']).fetch().then((user: bookshelf.Model) => {
-      //   // Update user (except for password)
-      //   user = user.set(_.omit(req.body, 'password')).save();
-      //   return Handles.SUCCESS(res, 'Update Successful');
-      // }).catch((err: any) => {
-      //   // Error
-      //   return Handles.SERVER_ERROR(res, 'Failed to update user', err.message);
-      // });
+      const token = req.user || req.headers['authorization'];
+
+      Users.findOne({
+        where: { token: token }
+      }).then(user => {
+        // Update user (except for password)
+        user.set(_.omit(req.body, 'password')).save().then(() => {
+          return Handles.SUCCESS(res, 'Update Successful');
+        });
+      }).catch((err: any) => {
+        // Error
+        return Handles.SERVER_ERROR(res, 'Failed to update user', err.message);
+      });
     }
-  });
-
-  /**
-   * Sends an email to the connected user account for resetting the password
-   * @param  {String} '/user/reset-password'         url path
-   * @param  {Function} ensureValidJSON([ 'email' ]) verifies the JSON content of the request body
-   * @param  {Function} (req, res)                   the callback to execute with the HTTP request and response
-   * @return {Object}                                the json response
-   */
-  router.post('/user/reset-password', checkJSON({ email: 'required' }), (req: express.Request, res: express.Response) => {
-    // TODO: Sequelize update the users password via reset
-    // User.where('email', req.body.email).fetch().then((user: bookshelf.Model) => {
-    //   const resetToken = uuid.v4();
-
-    //   if (user) {
-    //     // Update the `updated_at` timestamp
-    //     user = user.set('updated_at', Common.getTimestamp()).save().then((updatedUser: bookshelf.Model) => {
-    //       // Update/set the new record in PW Reset model
-    //       PasswordReset.where('user_id', updatedUser.toJSON().id).fetch().then((user: bookshelf.Model) => {
-    //         if (user !== null) {
-    //           // Update existing user
-    //           user.set({
-    //             'token': resetToken
-    //           }).save();
-    //         } else {
-    //           // Create new user
-    //           PasswordReset.forge({
-    //             'user_id': updatedUser.toJSON().id,
-    //             'token': resetToken
-    //           }).save();
-    //         }
-    //       });
-
-    //       // Notify the user of the change
-    //       const resetURL = `http://${process.env.WEB_HOST}?token=${resetToken}`;
-
-    //       return Mail.sendPasswordResetEmail(res, updatedUser.toJSON(), resetURL);
-    //     });
-    //   } else {
-    //     return Handles.NOT_FOUND(res, 'No User Found with email');
-    //   }
-    // });
-  });
-
-  /**
-   * Provides the users details with a valid token. Nothing is passed if the token has expired
-   * @param  {String}   '/user/reset-password/:token' url path
-   * @param  {Function} (req, res)                    the callback to execute with the HTTP request and response
-   * @return {Object}                                 the json response
-   */
-  router.get('/user/reset-password/:token', (req: express.Request, res: express.Response) => {
-    // TODO: Sequelize reset password callback via email with token in url
-    // PasswordReset.where('token', req.params.token).fetch().then((pwr: bookshelf.Model) => {
-    //   if (pwr) {
-    //     // Fetch the user
-    //     User.where('id', pwr.get('user_id')).fetch().then((user: bookshelf.Model) => {
-    //       const mins = moment.duration(moment().diff(user.get('updated_at'))).asMinutes();
-
-    //       // If within the time threshold
-    //       if (mins < process.env.PASSWORD_RESET_THRESHOLD) {
-    //         // Update the user accounts token and pass it down
-    //         new PasswordReset('id', pwr.get('id')).destroy().then(() => {
-    //           // Fetch user again to get updated token
-    //           return Handles.SUCCESS(res, 'Reset Password successful', { email: user.get('email'), token: user.get('token') });
-    //         });
-    //       } else {
-    //         return Handles.BAD_REQUEST(res, 'Token expired');
-    //       }
-    //     });
-    //   } else {
-    //     return Handles.NOT_FOUND(res, 'No User exists');
-    //   }
-    // });
   });
 
   /**
@@ -264,16 +197,20 @@ export = () => {
    * @return {Object}                                   the json response
    */
   router.post('/user/update-password', requireAuth, checkJSON({ password: 'required' }), (req: express.Request, res: express.Response) => {
-    // TODO: Find the users detail and update the password via Sequelize
-    // if (req.body.password.length > 0) {
-    //   // Update the user
-    //   User.where('token', req.headers['authorization']).fetch().then((user: bookshelf.Model) => {
-    //     user.set('password', Security.encrypt(req.body.password)).save();
-    //     return Handles.SUCCESS(res, 'Updated Password Successfully');
-    //   });
-    // } else {
-    //   return Handles.BAD_REQUEST(res, 'New Password is empty');
-    // }
+    const token = req.user || req.headers['authorization'];
+
+    if (req.body.password.length > 0) {
+      // Update the user
+      Users.findOne({
+        where: { token: token }
+      }).then(user => {
+        user.set('password', Security.encrypt(req.body.password)).save().then(() => {
+          return Handles.SUCCESS(res, 'Updated Password Successfully');
+        });
+      });
+    } else {
+      return Handles.BAD_REQUEST(res, 'New Password is empty');
+    }
   });
 
   /*----------  END ROUTES  ----------*/

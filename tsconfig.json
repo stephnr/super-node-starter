@@ -14,8 +14,8 @@
     "stripInternal": true
   },
   "exclude": [
-    ".vscode",
     "_gulp",
+    "src/client",
     "node_modules",
     "typings"
   ]

@@ -55,8 +55,8 @@ function Middleware(app: express.Express) {
 
   app.set('view engine', 'ejs');
   app.engine('ejs', require('ejs').renderFile);
-  app.use(express.static(`${__dirname}/../../client/public`));
-  app.set('views', `${__dirname}/../../client/views`);
+  app.use(express.static(`${__dirname}/../../src/client/public`));
+  app.set('views', `${__dirname}/../../src/client/views`);
 
   /*= End of CLIENT MIDDLEWARE =*/
   /*=============================================<<<<<*/
@@ -129,8 +129,9 @@ function Middleware(app: express.Express) {
       if(user !== null) {
         if(Security.cryptCompare(password, user.get('password'))) {
           // Password Success
-          user.set('token', uuid.v4()).save();
-          return done(null, user.get('token'));
+          user.set('token', uuid.v4()).save().then(() => {
+            return done(null, user.get('token'));
+          });
         } else {
           // Password Failed
         }

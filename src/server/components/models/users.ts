@@ -20,25 +20,40 @@ const log = new logEngine.Logger().instance;
 
 export = function(sequelize: sequelize.Sequelize) {
 
-  const tablename = 'USERS';
+  const tablename = 'users';
 
   const User = <sequelize.Model<types.UserInstance, types.UserPojo>> sequelize.define(tablename, {
+    id: {
+      type: Sequelize.BIGINT,
+      autoIncrement: true,
+      primaryKey: true
+    },
     email: {
       type:  Sequelize.STRING,
-      field: 'email'
+      field: 'email',
+      allowNull: false,
+      unique: true
     },
     password: {
       type:  Sequelize.STRING,
-      field: 'password'
+      field: 'password',
+      allowNull: false
     },
-    firstName: {
+    token: {
+      type: Sequelize.UUID,
+      allowNull: false,
+      unique: true
+    },
+    first_name: {
       type:  Sequelize.STRING,
-      field: 'first_name'
+      field: 'firstName'
     },
-    lastName: {
+    last_name: {
       type:  Sequelize.STRING,
-      field: 'last_name'
-    },
+      field: 'lastName'
+    }
+  }, {
+    timestamps: true
   });
 
   return User;
