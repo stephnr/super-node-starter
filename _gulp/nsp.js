@@ -8,11 +8,11 @@ const plugins = require('gulp-load-plugins')();
 =============================*/
 
 /** Runs the Node Security Project against package.json */
-gulp.task('nsp', () => {
+gulp.task('nsp', cb => {
   plugins.nsp({
-    package:     `./package.json`,
+    package:     `${__dirname}/../package.json`,
     stopOnError: false
-  });
+  }, cb);
 });
 
 /*=====  End of TASKS  ======*/
