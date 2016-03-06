@@ -1,4 +1,4 @@
-/// <reference path="../../typings/main/ambient/winston/winston.d.ts"/>
+/// <reference path="../../../typings/main/ambient/winston/winston.d.ts"/>
 
 /*=============================================>>>>>
 = INTERFACES =

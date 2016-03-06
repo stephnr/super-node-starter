@@ -1,22 +1,22 @@
 {
-    "compilerOptions": {
-        "inlineSourceMap": false,
-        "inlineSources": false,
-        "listFiles": true,
-        "module": "commonjs",
-        "noImplicitAny": true,
-        "outDir": "build",
-        "preserveConstEnums": false,
-        "removeComments": true,
-        "rootDir": "server",
-        "sourceMap": false,
-        "target": "ES6",
-        "stripInternal": true
-    },
-    "exclude": [
-        ".vscode",
-        "_gulp",
-        "node_modules",
-        "typings"
-    ]
+  "compilerOptions": {
+    "inlineSourceMap": false,
+    "inlineSources": false,
+    "listFiles": true,
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "outDir": "build",
+    "preserveConstEnums": false,
+    "removeComments": true,
+    "rootDir": "src/server",
+    "sourceMap": false,
+    "target": "es6",
+    "stripInternal": true
+  },
+  "exclude": [
+    ".vscode",
+    "_gulp",
+    "node_modules",
+    "typings"
+  ]
 }
