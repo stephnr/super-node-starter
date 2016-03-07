@@ -1,35 +1,15 @@
+# Build Folders
+build
+
 # Environment
 .env
 
-# Logs
-server/logs/
-*.log
-
-# Runtime data
-pids
-*.pid
-*.seed
-
-# Dependency directory
-# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
+# Dependency directories
 node_modules
+typings
 
 # Mac File Indexer
 .DS_Store
 
 # Files
 npm-debug.log
-
-# Typescript
-typings/
-build/
-
-# Documentation
-documentation/
-
-# Bower
-client/public/vendor
-client/public/zip
-
-# Database
-config/config.js

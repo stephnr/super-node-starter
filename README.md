@@ -9,9 +9,8 @@
 
 ### Client Frameworks
 
-- Webpack
+- Sass
 - AngularJS
-- AngularJS Lazy Loader
 
 ### Details
 
@@ -21,28 +20,22 @@ Please refer to the [CONTRIBUTING.md](https://github.com/stephn-r/super-node-sta
 
 #### Getting Started
 
-1. Install Modules
+1. Build the Docker Image
 
 ```sh
-npm install
+docker build -t super-node-starter .
 ```
 
-2. Export the Node Environment on the system environment variables
-
-```sh
-export NODE_ENV=development
-```
-
-3. Provide a `.env` file (copy the template)
+2. Provide a `.env` file (copy the template) and provider you own values
 
 ```sh
 cp .env.example .env
 ```
 
-4. Run the app
+3. Run the app
 
 ```sh
-npm start
+docker run -d -P --name web super-node-starter
 ```
 
 Below is a list of all the supported features. Refer to the [Wiki](https://github.com/stephn-r/super-node-starter/wiki) for more information on how to use them along with configuration options:
@@ -51,30 +44,24 @@ Below is a list of all the supported features. Refer to the [Wiki](https://githu
 1. Application Logging using Winston
 2. CORS Security Headers
 3. PassportJS for Session Management
-4. Cookie Modules for Session Management using Cookies
-5. Reading Cookies in the Request
-6. HTTP Method Overriding for customer headers
-7. Body Parsing to provide all content as JSON in `req` object
+4. Reading Cookies in the Request
+5. HTTP Method Overriding for customer headers
+6. Body Parsing to provide all content as JSON in `req` object
 
 #### Server Side Tools
-1. Sample Web Filter
-2. Sample Response Handler with HTTP Status Codes
-3. Basic Folder Structure to support easy Table Management for Knex.js
-4. Configuration Management for multiple environments (i.e. Development/Staging/Production)
-5. KnexJS for SQL query building + connecting to relational DBs
-6. Foreman for managing multiple NodeJS processes
+1. Response Handler with HTTP Status Codes
+2. Basic Folder Structure
+3. Sequelize for SQL query building + connecting to relational DBs
 
 #### Code Quality Tools
-1. Basic CodeClimate yaml file
-2. Basic CircleCI yaml file
+1. CodeClimate yaml file
+2. CircleCI yaml file
 3. ESLint Config File to manage code consistency
 4. Editor Config File to enforce code indentation
 5. Git dotfiles to better manage git history
-6. Apiary for API Documentation tracking
 
 #### Additional
 1. Basic CRON Job template
 2. Gulp for task management + additional tasks for:
-	a. Linting the project
-	b. Detecting vulnerable modules in `package.json`
-	c. Building JSDoc library
+	a. Detecting vulnerable modules in `package.json`
+	b. Compiling Web Assets using Webpack

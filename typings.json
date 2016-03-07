@@ -6,6 +6,7 @@
   "devDependencies": {},
   "ambientDependencies": {
     "bcrypt": "github:DefinitelyTyped/DefinitelyTyped/bcrypt/bcrypt.d.ts#30f566d3c9569cbfa6a97da863bdfa58853ca29a",
+    "bcrypt-nodejs": "github:DefinitelyTyped/DefinitelyTyped/bcrypt-nodejs/bcrypt-nodejs.d.ts#d61a1c6578c9f0d2612a6a860ebe5f47fc716cc7",
     "bluebird": "github:DefinitelyTyped/DefinitelyTyped/bluebird/bluebird.d.ts#6f2803aff1d0f9bd32c9c14eb7ee041c516976a0",
     "body-parser": "github:DefinitelyTyped/DefinitelyTyped/body-parser/body-parser.d.ts#9a2c50ea846ee6ae36feaea0accc77ae7b08a748",
     "compression": "github:DefinitelyTyped/DefinitelyTyped/compression/compression.d.ts#9dbba87a0de04697b26391557f48acfff113b7ce",
