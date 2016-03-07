@@ -14,6 +14,7 @@ declare var process: any;
 =            MODULES            =
 ===============================*/
 
+require('dotenv').config();
 import http = require('http');
 import app = require('./app');
 import config = require('./config/environment');

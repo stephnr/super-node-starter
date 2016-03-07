@@ -4,7 +4,7 @@
 =            REQUIRED MODULES            =
 ========================================*/
 
-import bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt-nodejs');
 
 /*=====  End of REQUIRED MODULES  ======*/
 
