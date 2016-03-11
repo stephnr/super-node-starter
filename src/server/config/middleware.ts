@@ -134,6 +134,7 @@ function Middleware(app: express.Express) {
           });
         } else {
           // Password Failed
+          return done(null, false, { message: 'Password Failed' });
         }
       } else {
         // No User Found
