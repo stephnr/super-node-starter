@@ -1,6 +1,6 @@
 # Summary
 
-* 1. Introduction
+* Introduction
    * Motivation
    * Core Principles
 
