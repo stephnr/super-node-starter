@@ -1,6 +1,6 @@
 # Summary
 
-* Introduction
+* [Introduction](introduction.md)
    * Motivation
    * Core Principles
 
