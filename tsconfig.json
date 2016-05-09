@@ -1,22 +1,60 @@
 {
   "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
     "inlineSourceMap": false,
     "inlineSources": false,
-    "listFiles": true,
+    "jsx": "react",
+    "listFiles": false,
     "module": "commonjs",
-    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "noEmit": false,
+    "noEmitOnError": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
     "outDir": "build",
-    "preserveConstEnums": false,
+    "preserveConstEnums": true,
     "removeComments": true,
-    "rootDir": "src/server",
+    "rootDir": "src",
     "sourceMap": false,
-    "target": "es6",
-    "stripInternal": true
+    "stripInternal": true,
+    "target": "es5"
   },
   "exclude": [
     "_gulp",
-    "src/client",
+    "build",
+    "config",
+    "migrations",
     "node_modules",
     "typings"
-  ]
+  ],
+  "filesGlob": [
+    "src/server/**/*.ts"
+  ],
+  "files": [
+    "src/server/app.ts",
+    "src/server/components/filters/checkJSON.ts",
+    "src/server/components/filters/requireAuth.ts",
+    "src/server/components/models/common.ts",
+    "src/server/components/models/definitions/types.d.ts",
+    "src/server/components/models/index.ts",
+    "src/server/components/models/rules.ts",
+    "src/server/components/models/users.ts",
+    "src/server/components/services/handles.ts",
+    "src/server/components/services/security.ts",
+    "src/server/config/database.ts",
+    "src/server/config/environment.d.ts",
+    "src/server/config/environment.ts",
+    "src/server/config/logging.ts",
+    "src/server/config/middleware.ts",
+    "src/server/config/routes.ts",
+    "src/server/routes/root.ts",
+    "src/server/routes/users.ts",
+    "src/server/web.ts"
+  ],
+  "atom": {
+    "rewriteTsconfig": true
+  }
 }

@@ -2,14 +2,15 @@
   "name": "super-node-starter",
   "version": "2.0.0",
   "description": "a simple starter project for NodeJS Express apps",
-  "main": "server/web.js",
-  "engine-strict": true,
+  "main": "build/server/web.js",
   "engines": {
-    "node": ">=5.2.0"
+    "node": "6.x"
   },
   "scripts": {
-    "start": "node build/web.js",
-    "test": "echo \"Error: no tests specified\""
+    "preinstall": "npm i -g typings typescript",
+    "postinstall": "typings install && tsc",
+    "start": "node build/server/web.js",
+    "test": "echo \"Error: no tests specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -23,11 +24,11 @@
   "homepage": "https://github.com/stephn-r/super-node-starter#readme",
   "private": true,
   "dependencies": {
-    "bcrypt": "0.8.5",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "1.13.3",
     "checkit": "0.6.0",
     "compression": "1.5.2",
+    "connect-redis": "3.0.2",
     "cors": "2.7.1",
     "cron": "1.1.0",
     "dotenv": "2.0.0",
@@ -35,8 +36,9 @@
     "errorhandler": "1.4.2",
     "express": "4.13.3",
     "express-session": "1.13.0",
+    "helmet": "2.0.0",
+    "hpp": "0.2.1",
     "lodash": "3.10.1",
-    "method-override": "2.3.5",
     "moment": "2.11.2",
     "node-uuid": "1.4.7",
     "passport": "0.3.2",
@@ -47,29 +49,12 @@
     "winston": "1.0.1"
   },
   "devDependencies": {
-    "angular": "1.5.0",
-    "angular-animate": "1.5.0",
-    "angular-aria": "1.5.0",
-    "angular-local-storage": "0.2.6",
-    "angular-material": "1.0.6",
-    "angular-messages": "1.5.0",
-    "angular-resource": "1.5.0",
-    "angular-ui-router": "0.2.18",
     "autoprefixer": "6.3.3",
-    "css-loader": "0.23.1",
-    "file-loader": "0.8.5",
     "gulp": "3.9.0",
     "gulp-load-plugins": "0.10.0",
     "gulp-nsp": "2.2.1",
     "gulp-util": "3.0.6",
-    "node-sass": "3.4.2",
-    "postcss-loader": "0.8.1",
     "require-dir": "0.3.0",
-    "sass-loader": "3.1.2",
-    "style-loader": "0.13.0",
-    "typescript": "1.8.7",
-    "url-loader": "0.5.7",
-    "webpack": "1.12.14",
-    "webpack-notifier": "1.3.0"
+    "typescript": "1.8.7"
   }
 }

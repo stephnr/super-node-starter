@@ -13,13 +13,11 @@ import * as express from 'express';
 =            MODULES            =
 ===============================*/
 
-import logEngine = require('../config/logging');
+import log from '../config/logging';
 
 /*=====  End of MODULES  ======*/
 
-const log = new logEngine.Logger().instance;
-
-export = (app: express.Express) => {
+export default function RootRoutes(app: express.Express) {
   /**
    * Root Router
    * @name Root Controller
@@ -38,7 +36,7 @@ export = (app: express.Express) => {
    */
   router.get('/', (req: express.Request, res: express.Response) => {
     log.debug('--->>> visited client webapp');
-    res.render('index');
+    res.send('Hello World');  
   });
 
   return router;

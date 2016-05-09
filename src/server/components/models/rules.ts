@@ -4,7 +4,7 @@
 =            MODULES            =
 ===============================*/
 
-import _ = require('lodash');
+import * as _ from 'lodash';
 
 /*=====  End of MODULES  ======*/
 
@@ -20,7 +20,7 @@ import _ = require('lodash');
 ///                         DISCLAIMER                              ///
 ///////////////////////////////////////////////////////////////////////
 
-export = {
+export default {
 
   /*=============================================>>>>>
   = USERS =

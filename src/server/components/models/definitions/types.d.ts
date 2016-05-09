@@ -8,4 +8,4 @@ export interface UserPojo {
   token: string;
 }
 
-export interface UserInstance extends sequelize.Instance<UserPojo>, UserPojo { }
+export interface UserInstance extends sequelize.Instance<UserPojo, UserPojo>, UserPojo { }

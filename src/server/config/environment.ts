@@ -1,68 +1,65 @@
-/// <reference path="environment.d.ts"/>
-
 'use strict';
 
 /*=============================================>>>>>
-= MODULE DECLARATION =
+= MODULES =
 ===============================================>>>>>*/
 
-import * as environment from 'environment';
+declare var process: any;
+import WebEnvironment from './environment.d';
+const SEQUELIZE_CFG = require('../../../config/config');
 
-/*= End of MODULE DECLARATION =*/
+/*= End of MODULES =*/
 /*=============================================<<<<<*/
 
-/*=============================================>>>>>
-= BUILD DEFAULTS =
-===============================================>>>>>*/
+/** Singleton defining the various server environment properties */
+class Environment {
+  public database: WebEnvironment.DatabaseConfig;
+  public logging: WebEnvironment.LoggingConfig;
+  public server: WebEnvironment.ServerConfig;
 
-var config = {
-  database: {},
-  logging: { exitOnError: false, use: { console: true }, console: { level: '', format: '' }, levels: {} },
-  server: { port: '', env: '' }
-}
+  /** Create an environment variables container */
+  constructor() {
+    this.database = {
+      engine:     process.env.DATABASE_ENGINE,
+      connection: {
+        host:     SEQUELIZE_CFG.host,
+        user:     SEQUELIZE_CFG.username,
+        password: SEQUELIZE_CFG.password,
+        database: SEQUELIZE_CFG.database,
+        charset:  'utf8'
+      },
+      poolMin: process.env.DATABASE_POOL_MIN,
+      poolMax: process.env.DATABASE_POOL_MAX
+    };
 
-/*= End of BUILD DEFAULTS =*/
-/*=============================================<<<<<*/
+    this.logging = {
+      console: {
+        level:  process.env.LOGGING_LEVEL,
+        format: 'MMM. D YYYY',
+        colors: {
+          debug: 'green',
+          info:  'blue',
+          warn:  'yellow',
+          error: 'red'
+        }
+      },
+      exitOnError: false,
+      levels:      {
+        debug: 0,
+        info:  1,
+        warn:  2,
+        error: 3
+      },
+      use: {
+        console: Boolean(process.env.CONSOLE_LOGGING)
+      },
+    };
 
-export = {
-  database: {
-    engine: process.env.DATABASE_ENGINE,
-    connection: {
-      host: process.env.DATABASE_HOST,
-      user: process.env.DATABASE_USER,
-      password: process.env.DATABASE_PASSWORD,
-      database: process.env.DATABASE_ENTITY,
-      charset: 'utf8'
-    },
-    poolMin: process.env.DATABASE_POOL_MIN,
-    poolMax: process.env.DATABASE_POOL_MAX
-  },
-
-  logging: {
-    exitOnError: false,
-    use: {
-      console: Boolean(process.env.CONSOLE_LOGGING)
-    },
-    console: {
-      level: process.env.LOGGING_LEVEL,
-      format: 'MMM. D YYYY',
-      colors: {
-        debug: 'green',
-        info:  'blue',
-        warn:  'yellow',
-        error: 'red'
-      }
-    },
-    levels: {
-      debug: 0,
-      info:  1,
-      warn:  2,
-      error: 3
-    }
-  },
-
-  server: {
-    port: process.env.PORT,
-    env: process.env.NODE_ENV || 'development'
+    this.server = {
+      port: process.env.PORT,
+      env:  process.env.NODE_ENV || 'development'
+    };
   }
 }
+
+export default (new Environment());

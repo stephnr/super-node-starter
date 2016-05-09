@@ -14,15 +14,12 @@ declare var process: any;
 =            MODULES            =
 ===============================*/
 
-require('dotenv').config();
-import http = require('http');
-import app = require('./app');
-import config = require('./config/environment');
-import logEngine = require('./config/logging');
+import * as http from 'http';
+import app from './app';
+import env from './config/environment';
+import log from './config/logging';
 
 /*=====  End of MODULES  ======*/
-
-const log = new logEngine.Logger().instance;
 
 /*----------  BUILDING WEB SERVER  ----------*/
 var appServer = http.createServer(app);
@@ -30,7 +27,7 @@ var port = process.env.PORT || global.config.server.port;
 
 /*----------  EXECUTE SERVER  ----------*/
 appServer.listen(port, () => {
-  log.info(`Web Server Environment: ${config.server.env}`);
-  log.info(`Web server listening on port ${config.server.port}`);
+  log.info(`Web Server Environment: ${env.server.env}`);
+  log.info(`Web server listening on port ${env.server.port}`);
   log.info('Web server started');
 });

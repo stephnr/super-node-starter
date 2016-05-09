@@ -4,7 +4,7 @@
 =            MODULES            =
 ===============================*/
 
-import moment = require('moment');
+import * as moment from 'moment';
 
 /*=====  End of MODULES  ======*/
 
@@ -12,7 +12,7 @@ import moment = require('moment');
 =            METHODS            =
 ===============================*/
 
-export = {
+export default {
   /**
    * Returns current timestamps
    * @return {Object} object of timestamps

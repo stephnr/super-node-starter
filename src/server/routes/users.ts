@@ -4,8 +4,12 @@
 = TYPINGS =
 ===============================================>>>>>*/
 
+import * as _ from 'lodash';
 import * as express from 'express';
+import * as moment from 'moment';
+import * as passport from 'passport';
 import * as sequelize from 'sequelize';
+import * as uuid from 'node-uuid';
 
 /*= End of TYPINGS =*/
 /*=============================================<<<<<*/
@@ -14,35 +18,23 @@ import * as sequelize from 'sequelize';
 =            MODULES            =
 ===============================*/
 
-import _ = require('lodash');
-import logEngine = require('../config/logging');
-import moment = require('moment');
-import passport = require('passport');
-import uuid = require('node-uuid');
+import log from '../config/logging';
 
 /*----------  FILTERS  ----------*/
-import requireAuth = require('../components/filters/requireAuth');
-import checkJSON = require('../components/filters/checkJSON');
-import rules = require('../components/models/rules');
+import requireAuth from '../components/filters/requireAuth';
+import checkJSON from '../components/filters/checkJSON';
+import rules from '../components/models/rules';
 
 /*----------  SERVICES  ----------*/
-import Security = require('../components/services/security');
-import ResponseHandler = require('../components/handles');
-import db = require('../components/models');
+import * as Security from '../components/services/security';
+import Handles from '../components/services/handles';
+import db from '../components/models';
 
 /*----------  MODELS  ----------*/
-// TODO: import sequelize models
+
+const Models = new db();
 
 /*=====  End of MODULES  ======*/
-
-/* Configure Logging */
-const log = new logEngine.Logger().instance;
-
-/* Configure Response Handler */
-const Handles = new ResponseHandler.Handler();
-
-/* Configure Models */
-const Models = new db.Models();
 
 /*=============================================>>>>>
 = DB MODELS =
@@ -57,7 +49,7 @@ const Users = Models.Users;
  * Collection of REST endpoints for managing Users
  * @return {Object} Express Router
  */
-export = () => {
+export default function UserRoutes(app: express.Application) {
   /*----------  BEGIN ROUTES  ----------*/
   const router = require('express').Router();
 
@@ -98,7 +90,7 @@ export = () => {
 
     log.debug(`Preparing new user with API Token: ${req.body.token}`);
     // Create new record
-    Users.create(req.body).then(user => {
+    Users.create(req.body).then((user: any) => {
       log.debug(`--->>> New User Created: ${user.get('token')}`);
       return Handles.CREATED(res, 'Successfully created new User', _.omit(user.toJSON(), ['password', 'id', 'updated_at', 'created_at']));
     }).catch((err: sequelize.BaseError) => {
@@ -129,8 +121,9 @@ export = () => {
    */
   router.get('/logout', (req: express.Request, res: express.Response) => {
     log.debug(`Logging out for User: ${req.user}`);
-    req.logout();
-    res.redirect('/');
+    req.session.regenerate(err => {
+      res.redirect('/');
+    });
   });
 
   /*=============================
@@ -149,7 +142,7 @@ export = () => {
 
     Users.findOne({
       where: { token: token }
-    }).then(user => {
+    }).then((user: any) => {
       if (req.user !== null) {
         // Found user
         return Handles.SUCCESS(res, 'Found User', _.omit(user.toJSON(), ['password', 'id', 'updated_at', 'created_at']));
@@ -176,7 +169,7 @@ export = () => {
 
       Users.findOne({
         where: { token: token }
-      }).then(user => {
+      }).then((user: any) => {
         // Update user (except for password)
         user.set(_.omit(req.body, 'password')).save().then(() => {
           return Handles.SUCCESS(res, 'Update Successful');
@@ -203,7 +196,7 @@ export = () => {
       // Update the user
       Users.findOne({
         where: { token: token }
-      }).then(user => {
+      }).then((user: any) => {
         user.set('password', Security.encrypt(req.body.password)).save().then(() => {
           return Handles.SUCCESS(res, 'Updated Password Successfully');
         });

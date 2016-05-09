@@ -4,13 +4,14 @@
 =            MODULES            =
 ===============================*/
 
-import Sequelize = require('sequelize');
+import * as Sequelize from 'sequelize';
+const SEQUELIZE_CFG = require('../../../config/config');
 
 /*=====  End of MODULES  ======*
 
 /*----------  BUILD DATABASE CONNECTION  ----------*/
-const sequelize = new Sequelize(process.env.DATABASE_ENTITY, process.env.DATABASE_USER, process.env.DATABASE_PASSWORD, {
-  host:    process.env.DATABASE_HOST,
+const sequelize = new Sequelize(SEQUELIZE_CFG.database, SEQUELIZE_CFG.username, SEQUELIZE_CFG.password, {
+  host:    SEQUELIZE_CFG.host,
   dialect: process.env.DATABASE_ENGINE,
   pool: {
     maxConnections:  process.env.DATABASE_POOL_MAX,
@@ -19,4 +20,4 @@ const sequelize = new Sequelize(process.env.DATABASE_ENTITY, process.env.DATABAS
   }
 });
 
-export = sequelize;
+export default sequelize;

@@ -1,33 +1,22 @@
 'use strict';
 
-/*=============================================>>>>>
-= TYPINGS =
-===============================================>>>>>*/
-
-import * as express from 'express';
-
-/*= End of TYPINGS =*/
-/*=============================================<<<<<*/
-
 /*===============================
 =            MODULES            =
 ===============================*/
 
+import * as express from 'express';
+import handles from '../services/handles';
+import log from '../../config/logging';
 const Checkit = require('checkit');
-import ResponseHandler = require('../handles');
-import logEngine = require('../../config/logging');
 
 /*=====  End of MODULES  ======*/
 
-const log = new logEngine.Logger().instance;
-const Handles = new ResponseHandler.Handler();
-
 /**
- * Middleware to validate the request body for specific parameters
- * @param  {Object} reqParams map of params to use with checkit
- * @return {Object}           security chain process
- */
-export = (reqParams: Object) => {
+* Middleware to validate the request body for specific parameters
+* @param  {Object} reqParams map of params to use with checkit
+* @return {Object}           security chain process
+*/
+export default function(reqParams: Object) {
   return (req: express.Request, res: express.Response, next: express.NextFunction) => {
     const checkit = new Checkit(reqParams);
 
@@ -35,11 +24,10 @@ export = (reqParams: Object) => {
       // Required params exist
       return next();
     }).catch(Checkit.Error, (err: any) => {
-      // Missing params
-      // body contained invalid params
+      // Missing params: body contained invalid params
       log.info('-->> body contained invalid params');
       log.info(err.toJSON());
-      return Handles.BAD_REQUEST(res, 'Insufficient Params', err.toJSON());
+      return handles.BAD_REQUEST(res, 'Insufficient Params', err.toJSON());
     });
   };
-};
+}

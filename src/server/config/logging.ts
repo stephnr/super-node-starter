@@ -4,52 +4,53 @@
 =            MODULES            =
 ===============================*/
 
-import * as express from 'express';
-
-import moment = require('moment');
-import winston = require('winston');
-import config = require('./environment');
+import * as moment from 'moment';
+import * as winston from 'winston';
+import env from './environment';
 
 /*=====  End of MODULES  ======*/
 
-module logEngine {
-  export class Logger {
-    instance: winston.LoggerInstance;
+/** Singleton class defining the logging instance */
+class Logger {
+  public transports: Array<winston.TransportInstance>;
+  public instance: winston.LoggerInstance;
 
-    constructor() {
-      /**
-       * Builds the Logging framework
-       * @return log Winston Logging Instance
-       */
-      const transports: Array<winston.TransportInstance> = [];
-      var instance: winston.LoggerInstance = null;
+  /** Creates a new instance of the Winston Logging Tool */
+  constructor() {
+    this.transports = [];
+    this.instance = null || this.instance;
+
+    if(this.instance) {
+      return;
+    } else {
+      /*----------- SETUP COLORS -----------*/
+      winston.addColors(env.logging.console.colors);
 
       /*=========================================
       =            DEFINE TRANSPORTS            =
       =========================================*/
 
       // Builds Console Logging Transporter for Winston
-      if (config.logging.use.console === true) {
-        transports.push(new (winston.transports.Console)({
-          level:  config.logging.console.level,
-          colors: config.logging.console.colors,
+      if(env.logging.use.console === true) {
+        this.transports.push(new (winston.transports.Console)({
+          level:     env.logging.console.level,
+          colors:    env.logging.console.colors,
           timestamp: () => {
-            return moment().format(config.logging.console.format);
+            return moment().format(env.logging.console.format);
           }
         }));
       }
 
       /*=====  End of DEFINE TRANSPORTS  ======*/
 
-
       // Builds Winston Logger with Transports
       this.instance = new (winston.Logger)({
-        exitOnError: config.logging.exitOnError,
-        levels: config.logging.levels,
-        transports: transports
+        exitOnError: env.logging.exitOnError,
+        levels:      env.logging.levels,
+        transports:  this.transports
       });
     }
   }
 }
 
-export = logEngine;
+export default (new Logger().instance);

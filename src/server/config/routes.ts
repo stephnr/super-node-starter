@@ -1,12 +1,15 @@
 'use strict';
 
 /*=============================================>>>>>
-= TYPINGS =
+= MODULES =
 ===============================================>>>>>*/
 
 import * as express from 'express';
 
-/*= End of TYPINGS =*/
+import root from '../routes/root';
+import user from '../routes/users';
+
+/*= End of MODULES =*/
 /*=============================================<<<<<*/
 
 /**
@@ -14,10 +17,10 @@ import * as express from 'express';
  * @namespace Routes
  * @param  {Object} app express application object
  */
-export = (app: express.Express) => {
+export default function Routes(app: express.Express) {
   /*----------  ROUTERS  ----------*/
-  const rootRoutes = require('../routes/root')(app);
-  const userRoutes = require('../routes/users')(app);
+  const rootRoutes = root(app);
+  const userRoutes = user(app);
 
   /*=============================================>>>>>
   = ROUTES =

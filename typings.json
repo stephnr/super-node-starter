@@ -1,33 +1,26 @@
 {
   "dependencies": {
-    "moment": "github:typed-typings/npm-moment#a4075cd50e63efbedd850f654594f293ab81a385",
-    "node-uuid": "github:rapropos/typed-node-uuid#a2ad36f2802416729eaad89559d76e0b03ba673c"
+    "cors": "registry:npm/cors#2.7.0+20160505024722",
+    "moment": "registry:npm/moment#2.10.5+20160211003958",
+    "node-uuid": "registry:npm/node-uuid#1.4.7+20160503013124",
+    "sequelize": "registry:npm/sequelize#3.0.0+20160505151037"
   },
   "devDependencies": {},
   "ambientDependencies": {
-    "bcrypt": "github:DefinitelyTyped/DefinitelyTyped/bcrypt/bcrypt.d.ts#30f566d3c9569cbfa6a97da863bdfa58853ca29a",
-    "bcrypt-nodejs": "github:DefinitelyTyped/DefinitelyTyped/bcrypt-nodejs/bcrypt-nodejs.d.ts#d61a1c6578c9f0d2612a6a860ebe5f47fc716cc7",
-    "bluebird": "github:DefinitelyTyped/DefinitelyTyped/bluebird/bluebird.d.ts#6f2803aff1d0f9bd32c9c14eb7ee041c516976a0",
-    "body-parser": "github:DefinitelyTyped/DefinitelyTyped/body-parser/body-parser.d.ts#9a2c50ea846ee6ae36feaea0accc77ae7b08a748",
-    "compression": "github:DefinitelyTyped/DefinitelyTyped/compression/compression.d.ts#9dbba87a0de04697b26391557f48acfff113b7ce",
-    "errorhandler": "github:DefinitelyTyped/DefinitelyTyped/errorhandler/errorhandler.d.ts#7e47928c4d7717a576243c4ac4a2c0f66d80b07e",
-    "express": "github:DefinitelyTyped/DefinitelyTyped/express/express.d.ts#dd638012d63e069f2c99d06ef4dcc9616a943ee4",
-    "express-session": "github:DefinitelyTyped/DefinitelyTyped/express-session/express-session.d.ts#3ca0e0306a56b3dff5e6999dbd1627bf30201cfc",
-    "lodash": "github:DefinitelyTyped/DefinitelyTyped/lodash/lodash.d.ts#6f2803aff1d0f9bd32c9c14eb7ee041c516976a0",
-    "method-override": "github:DefinitelyTyped/DefinitelyTyped/method-override/method-override.d.ts#2b58083c57296eca8691d258edb9cbb6b17f2b95",
-    "mime": "github:DefinitelyTyped/DefinitelyTyped/mime/mime.d.ts#cb5206a8ac1c9a3ddfd126f5ecea6729b2361452",
-    "moment": "github:DefinitelyTyped/DefinitelyTyped/moment/moment.d.ts#b090bcf9ba9f756ec8ff53e7707269729172a325",
-    "moment-node": "github:DefinitelyTyped/DefinitelyTyped/moment/moment-node.d.ts#b090bcf9ba9f756ec8ff53e7707269729172a325",
-    "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#48c1e3c1d6baefa4f1a126f188c27c4fefd36bff",
-    "node-uuid": "github:DefinitelyTyped/DefinitelyTyped/node-uuid/node-uuid.d.ts#d6c38daa6d89dd44b87f537600c55a78dfa14888",
-    "node-uuid-base": "github:DefinitelyTyped/DefinitelyTyped/node-uuid/node-uuid-base.d.ts#d6c38daa6d89dd44b87f537600c55a78dfa14888",
-    "node-uuid-cjs": "github:DefinitelyTyped/DefinitelyTyped/node-uuid/node-uuid-cjs.d.ts#d6c38daa6d89dd44b87f537600c55a78dfa14888",
-    "passport": "github:DefinitelyTyped/DefinitelyTyped/passport/passport.d.ts#432545c4d99dba86a5229bed0e500f66f43b1baa",
-    "passport-local": "github:DefinitelyTyped/DefinitelyTyped/passport-local/passport-local.d.ts#67e09fcdb1efacbb3abf964672b4b362f0e68b4b",
-    "sequelize": "github:DefinitelyTyped/DefinitelyTyped/sequelize/sequelize.d.ts#6f2803aff1d0f9bd32c9c14eb7ee041c516976a0",
-    "serve-static": "github:DefinitelyTyped/DefinitelyTyped/serve-static/serve-static.d.ts#0fa4e9e61385646ea6a4cba2aef357353d2ce77f",
-    "uuid": "github:DefinitelyTyped/DefinitelyTyped/uuid/UUID.d.ts#0695a4a6f3a50fe61a46d62a353e4856371ec25c",
-    "validator": "github:DefinitelyTyped/DefinitelyTyped/validator/validator.d.ts#6f2803aff1d0f9bd32c9c14eb7ee041c516976a0",
-    "winston": "github:DefinitelyTyped/DefinitelyTyped/winston/winston.d.ts#fd9f16f862587bde12e5254e4c1e3d21ae94f9d1"
+    "bcrypt-nodejs": "registry:dt/bcrypt-nodejs#0.0.0+20160316155526",
+    "body-parser": "registry:dt/body-parser#0.0.0+20160317120654",
+    "compression": "registry:dt/compression#0.0.0+20160501162003",
+    "errorhandler": "registry:dt/errorhandler#0.0.0+20160316155526",
+    "express": "registry:dt/express#4.0.0+20160317120654",
+    "express-serve-static-core": "registry:dt/express-serve-static-core#0.0.0+20160322035842",
+    "express-session": "registry:dt/express-session#0.0.0+20160331200931",
+    "helmet": "registry:dt/helmet#0.0.0+20160501161936",
+    "lodash": "registry:dt/lodash#3.10.0+20160330154726",
+    "mime": "registry:dt/mime#0.0.0+20160316155526",
+    "node": "registry:dt/node#4.0.0+20160501135006",
+    "passport": "registry:dt/passport#0.2.0+20160317120654",
+    "passport-local": "registry:dt/passport-local#0.0.0+20160316155526",
+    "serve-static": "registry:dt/serve-static#0.0.0+20160501131543",
+    "winston": "registry:dt/winston#0.0.0+20160417152829"
   }
 }

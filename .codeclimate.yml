@@ -4,11 +4,4 @@ engines:
 ratings:
   paths:
     - server/**/*
-    - worker/**/*
     - migrations/**/*
-    - seeds/**/*
-    - gulpfile.js
-    - knexfile.js
-exclude_paths:
-  - apiary/**/*
-  - gulp/**/*

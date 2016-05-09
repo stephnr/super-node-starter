@@ -10,16 +10,16 @@ Thank you for considering to help contribute to our source code and to make Supe
 
 ## <a name="issues"></a> Found an Issue?
 
-If you find a bug in the source code or a mistake in the documentation/wikis, you can help remedy it by submitting an issue to [Github Repository](https://github.com/stephn-r/super-node-starter/issues)
+If you find a bug in the source code or a mistake in the documentation/wikis, you can help remedy it by submitting an issue to [Github Repository](https://github.com/gigster-eng/super-node-starter/issues)
 
 ***Please see the Submission Guidelines below***
 
 ## <a name="feature-request"></a> Want a feature?
 
-You can request a new feature by submitting an issue to our [Github Repository](https://github.com/stephn-r/super-node-starter). If you would like to implement a new feature yourself then consider what kind of change it is:
+You can request a new feature by submitting an issue to our [Github Repository](https://github.com/gigster-eng/super-node-starter). If you would like to implement a new feature yourself then consider what kind of change it is:
 
 - ***Major Changes***: that can dramatically change the core functionality of the plugin
-- ***Small Changes***: can be crafted and submitted to the [Github Repository](https://github.com/stephn-r/super-node-starter) as a Pull Request
+- ***Small Changes***: can be crafted and submitted to the [Github Repository](https://github.com/gigster-eng/super-node-starter) as a Pull Request
 
 ## <a name="submission"></a> Submission Guidelines:
 
@@ -39,7 +39,7 @@ If your issue appears to be a bug, and hasn't been reported, open a new issue. H
 
 Before you submit a pull request consider the following guidelines:
 
-- Search [Github](https://github.com/stephn-r/super-node-starter/pulls) for an open or closed PR that relates to your submission. You do not want to duplicate effort.
+- Search [Github](https://github.com/gigster-eng/super-node-starter/pulls) for an open or closed PR that relates to your submission. You do not want to duplicate effort.
 - Make your changes in a new git branch:
 ```bash
 git checkout -b my-fix-branch master
