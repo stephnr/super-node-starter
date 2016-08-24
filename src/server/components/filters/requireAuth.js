@@ -4,19 +4,15 @@
 =            MODULES            =
 ===============================*/
 
-import * as express from 'express';
+import Models from '../models';
 import Handles from '../services/handles';
-import log from '../../config/logging';
 
 /*=====  End of MODULES  ======*/
-
-import db from '../models';
 
 /*=============================================>>>>>
 = IMPORT DATABASE TABLES ORM =
 ===============================================>>>>>*/
 
-const Models = new db();
 const Users = Models.Users;
 
 /*= End of IMPORT DATABASE TABLES ORM =*/
@@ -31,19 +27,32 @@ const Users = Models.Users;
  * @param  {Object}   req  HTTP request
  * @param  {Object}   res  HTTP response
  * @param  {Function} next filter chain
+ * @return {Object}        the response object
  */
-export default function(req: express.Request, res: express.Response, next: express.NextFunction) {
-  const token = req.user || req.headers['authorization'];
+exports.requireAuth = (req, res, next) => {
+  req.user = req.user || {};
+  const token = req.user.token;
+  const authToken = req.headers.authorization;
 
-  Users.findOne({
-    where: { token: token }
-  }).then(user => {
-    // Check for user is null
-    return user ? next() : Handles.UNAUTHORIZED(res, 'Access Token is Invalid', null);
-  }).catch(() => {
-    // Token is Invalid
-    return Handles.UNAUTHORIZED(res, 'Access Token is Invalid', null);
-  });
+  if(req.user.id) {
+    return next();
+  } else {
+    // Fetch the user info
+    Users.findOne({
+      where: { token: (authToken || token) }
+    }).then(user => {
+      if(user) {
+        // Inject the user into the request
+        req.user = user.toJSON();
+        return next();
+      } else {
+        return Handles.TOKEN_EXPIRED(res, 'No user found', null);
+      }
+    }).catch(() => {
+      // Token is Invalid
+      return Handles.TOKEN_EXPIRED(res, 'Access Token is Invalid', null);
+    });
+  }
 };
 
 /*=====  End of MODULE  ======*/

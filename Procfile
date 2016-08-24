@@ -1,1 +1,1 @@
-web: node build/server/web.js
+web: node bin/server/web.js

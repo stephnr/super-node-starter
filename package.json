@@ -1,16 +1,21 @@
 {
   "name": "super-node-starter",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "a simple starter project for NodeJS Express apps",
   "main": "build/server/web.js",
   "engines": {
     "node": "6.x"
   },
   "scripts": {
-    "preinstall": "npm i -g typings typescript",
-    "postinstall": "typings install && tsc",
-    "start": "node build/server/web.js",
-    "test": "echo \"Error: no tests specified\""
+    "preinstall": "npm i -g sequelize-cli",
+    "migration": "sequelize db:migrate",
+    "prestart": "babel src -d bin",
+    "start": "heroku local web",
+    "develop": "heroku local web --procfile=Procfile_DV",
+    "coverage": "heroku local cover --procfile=Procfile_DV",
+    "debug": "node-debug src/server/web.js",
+    "pretest": "npm run prestart",
+    "test": "mocha __tests__/"
   },
   "repository": {
     "type": "git",
@@ -24,11 +29,15 @@
   "homepage": "https://github.com/stephn-r/super-node-starter#readme",
   "private": true,
   "dependencies": {
+    "babel-cli": "6.11.4",
+    "babel-preset-es2015": "6.13.2",
+    "babel-register": "6.11.6",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "1.13.3",
     "checkit": "0.6.0",
     "compression": "1.5.2",
     "connect-redis": "3.0.2",
+    "cookie-parser": "1.4.3",
     "cors": "2.7.1",
     "cron": "1.1.0",
     "dotenv": "2.0.0",
@@ -49,12 +58,16 @@
     "winston": "1.0.1"
   },
   "devDependencies": {
-    "autoprefixer": "6.3.3",
+    "babel-eslint": "6.1.2",
+    "chai": "3.5.0",
     "gulp": "3.9.0",
+    "gulp-eslint": "3.0.1",
     "gulp-load-plugins": "0.10.0",
     "gulp-nsp": "2.2.1",
     "gulp-util": "3.0.6",
+    "jsonschema": "1.1.0",
     "require-dir": "0.3.0",
-    "typescript": "1.8.7"
+    "superagent": "2.2.0",
+    "supertest": "2.0.0"
   }
 }

@@ -4,7 +4,7 @@
 =            MODULES            =
 ===============================*/
 
-import * as moment from 'moment';
+import moment from 'moment';
 
 /*=====  End of MODULES  ======*/
 
@@ -33,6 +33,6 @@ export default {
   getTimestamp: () => {
     return moment().toISOString();
   }
-}
+};
 
 /*=====  End of METHODS  ======*/

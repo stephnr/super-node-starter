@@ -4,7 +4,7 @@
 =            REQUIRED MODULES            =
 ========================================*/
 
-import * as bcrypt from 'bcrypt-nodejs';
+import bcrypt from 'bcrypt-nodejs';
 
 /*=====  End of REQUIRED MODULES  ======*/
 
@@ -14,13 +14,15 @@ import * as bcrypt from 'bcrypt-nodejs';
 
 /**
  * Encrypts the content using bcrypt to create a hash code
- * @param  {String} value content the content to encrypt
- * @return {String}         crypted hash
+ * @param  {String} value        content the content to encrypt
+ * @param  {String} bcryptSalt   salt to pad the value with
+ * @return {String}              crypted hash
  */
-export function encrypt(value: string) {
-  var salt = bcrypt.genSaltSync(parseInt(process.env.BCRYPT_SALT));
+exports.encrypt = function(value, bcryptSalt) {
+  const salt = bcrypt.genSaltSync(parseInt(bcryptSalt, 10));
+
   return bcrypt.hashSync(value, salt);
-}
+};
 
 /**
  * Compares the content against the hash
@@ -28,6 +30,6 @@ export function encrypt(value: string) {
  * @param  {String} hash    the hash to compare against
  * @return {Boolean}        valid flag
  */
-export function cryptCompare(guess: string, hash: string) {
+exports.cryptCompare = function(guess, hash) {
   return bcrypt.compareSync(guess, hash);
-}
+};
