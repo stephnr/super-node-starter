@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  up: function (queryInterface, Sequelize) {
+  up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('users', {
       id: {
         type:          Sequelize.BIGINT,
@@ -45,7 +45,7 @@ module.exports = {
     });
   },
 
-  down: function (queryInterface) {
+  down: queryInterface => {
     return queryInterface.dropTable('users');
   }
 };

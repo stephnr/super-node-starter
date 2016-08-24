@@ -1,0 +1,2 @@
+web: nodemon src/server/web.js --exec babel-node
+cover: istanbul cover _mocha __tests__/

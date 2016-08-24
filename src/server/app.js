@@ -1,19 +1,23 @@
-/// <reference path="../../typings/main.d.ts"/>
+'use strict';
 
 /*===============================
 =            MODULES            =
 ===============================*/
 
-import * as express from 'express';
-import middleware from './config/middleware';
-import routes from './config/routes';
+import express from 'express';
+
+import {
+  Middleware,
+  Routes
+} from './config';
+
 const app = express();
 
 /*=====  End of MODULES  ======*/
 
 /*----------  BUILDING EXPRESS APP COMPONENTS  ----------*/
-middleware(app);
-routes(app);
+Middleware(app);
+Routes(app);
 /*----------- END BUILDING EXPRESS APP COMPONENTS -----------*/
 
 export default app;

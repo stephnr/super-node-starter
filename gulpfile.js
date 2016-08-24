@@ -6,4 +6,4 @@ const gulp = require('gulp');
 requireDir('./_gulp');
 
 // Defines the default task(s) to run on `gulp`
-gulp.task('default', [ 'nsp' ]);
+gulp.task('default', [ 'nsp', 'lint' ]);

@@ -2,11 +2,6 @@
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/stephn-r/super-node-starter)
 
-### Server Frameworks
-
-- Typescript
-- Sequelize
-
 ### Details
 
 A complete NodeJS server starter template. This template is designed to give any NodeJS project an extreme running start that includes some of the most common features vital to the Client/Server relationship model while providing various other tools, and resources for quickly building out any part of the server development stack.
@@ -74,31 +69,3 @@ cp .env.example .env
 ```sh
 docker run -d -P --name web super-node-starter
 ```
-
-Below is a list of all the supported features:
-
-#### Middleware Tools
-1. Application Logging using Winston
-2. CORS Security Headers
-3. PassportJS for Session Management
-4. Reading Cookies in the Request
-5. HTTP Method Overriding for customer headers
-6. Body Parsing to provide all content as JSON in `req` object
-7. Multiple Security Middleware Filters
-
-#### Server Side Tools
-1. Response Handler with HTTP Status Codes
-2. Semantic Folder Structure
-3. Sequelize for SQL query building + connecting to relational DBs
-
-#### Code Quality Tools
-1. CodeClimate yaml file
-2. CircleCI yaml file
-3. ESLint Config File to manage code consistency
-4. Editor Config File to enforce code indentation
-5. Git dotfiles to better manage git history
-6. Typescript for easy development and strongly typed definitions
-
-#### Additional
-2. Gulp for task management + additional tasks for:
-	a. Detecting vulnerable modules in `package.json`

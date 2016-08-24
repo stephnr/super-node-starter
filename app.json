@@ -3,10 +3,10 @@
   "description": "a simple starter project for NodeJS Express apps",
   "keywords": [
     "node",
-    "typescript",
+    "es6",
+    "es7",
     "javascript",
     "template",
-    "beginner",
     "starter"
   ],
   "website": "https://github.com/stephn-r/super-node-starter",

@@ -1,64 +1,61 @@
 'use strict';
 
 /*=============================================>>>>>
-= TYPINGS =
-===============================================>>>>>*/
-
-import * as bodyParser from 'body-parser';
-import * as compression from 'compression';
-import * as cors from 'cors';
-import * as errorhandler from 'errorhandler';
-import * as express from 'express';
-import * as _ from 'lodash';
-import * as LocalStrategy from 'passport-local';
-import * as path from 'path';
-import * as passport from 'passport';
-import * as session from 'express-session';
-import * as sequelize from 'sequelize';
-import * as uuid from 'node-uuid';
-import * as helmet from 'helmet';
-
-import log from './logging';
-
-const hpp = require('hpp');
-const RedisStore = require('connect-redis')(session);
-const sessionStore = new RedisStore({ url: process.env.REDISCLOUD_URL });
-
-/*= End of TYPINGS =*/
-/*=============================================<<<<<*/
-
-/*=============================================>>>>>
 = MODULES =
 ===============================================>>>>>*/
 
-import db from '../components/models';
+import bodyParser from 'body-parser';
+import compression from 'compression';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import LocalStrategy from 'passport-local';
+import passport from 'passport';
+
+import session from 'express-session';
+import uuid from 'node-uuid';
+import helmet from 'helmet';
+
+import log from './logging';
+
+import hpp from 'hpp';
+
+const RedisStore = require('connect-redis')(session);
+const sessionStore = new RedisStore({ url: process.env.REDISCLOUD_URL });
+
+/*= End of MODULES =*/
+/*=============================================<<<<<*/
+
+/*=============================================>>>>>
+= ADDITIONAL MODULES =
+===============================================>>>>>*/
+
+import Models from '../components/models';
 
 /*----------  SERVICES  ----------*/
 
-import * as Security from '../components/services/security';
+import Security from '../components/services/security';
 
-/*=====  End of MODULES  ======*/
+/*=====  End of ADDITIONAL MODULES  ======*/
 
 /**
  * Orchestrates the middleware tools for the Express Application
  * @param  {Object} app Express Application
  */
-export default function Middleware(app: express.Express) {
+exports.Middleware = function(app) {
   const env = process.env.NODE_ENV;
 
   /*=============================================>>>>>
   = IMPORT DATABASE TABLES ORM =
   ===============================================>>>>>*/
 
-  const Models = new db();
   const Users = Models.Users;
 
   /*= End of IMPORT DATABASE TABLES ORM =*/
   /*=============================================<<<<<*/
 
   const sess = {
-    name:         'nodeStarter.sid',
-    genid: (req: express.Request) => {
+    name:         'SNS.sid',
+    genid: req => {
       // use UUIDs for session IDs
       return uuid.v4();
     },
@@ -70,13 +67,7 @@ export default function Middleware(app: express.Express) {
   };
 
   if (env === 'development' || env === 'staging') {
-    app.use(errorhandler({log: (err: Error, str: string, req: express.Request) => {
-      log.debug('===== SHOWING ERROR =====');
-      log.debug(str);
-      log.debug(req.method);
-      log.debug(req.url);
-      log.debug('===== END ERROR DISPLAY =====');
-    }}));
+    // custom dev/staging middleware
   } else {
     // trust first proxy
     app.set('trust proxy', 1);
@@ -112,34 +103,38 @@ export default function Middleware(app: express.Express) {
   ===============================================>>>>>*/
 
   /* Enables CORS Headers */
-  app.use(cors());
+  app.use('*', cors());
+  /* parses cookies */
+  app.use(cookieParser());
+  /* Parses the request body */
+  app.use(bodyParser.urlencoded({ extended: false }));
+  /* Returns request body as JSON */
+  app.use(bodyParser.json());
   /* Establishes an Express Session */
   app.use(session(sess));
   /* Imports Passport Middleware */
   app.use(passport.initialize());
   /* Manages the same Cookie Session */
   app.use(passport.session());
-  /* Parses the request body */
-  app.use(bodyParser.urlencoded({ extended: false }));
-  /* Returns request body as JSON */
-  app.use(bodyParser.json());
   /* GZIP everything */
   app.use(compression());
-  /* Establishes CORS headers */
-  app.options(process.env.CORS, cors());
 
   /*= End of SERVER MIDDLEWARE =*/
   /*=============================================<<<<<*/
 
-  passport.serializeUser((user: any, done: Function) => {
+  passport.serializeUser((user, done) => {
     done(null, user.token);
   });
 
-  passport.deserializeUser((token: any, done: Function) => {
+  passport.deserializeUser((token, done) => {
     Users.findOne({
       where: { token: token }
-    }).then((user: any) => {
-      done(null, _.omit(user.toJSON(), 'password'));
+    }).then(user => {
+      if(user) {
+        done(null, user.toJSON());
+      } else {
+        done(null, {});
+      }
     });
   });
 
@@ -147,20 +142,23 @@ export default function Middleware(app: express.Express) {
   =            LOCAL PASSPORT STRATEGY            =
   ===============================================*/
 
-  var localStrategy: LocalStrategy.Strategy = new LocalStrategy.Strategy({
+  const localStrategy = new LocalStrategy.Strategy({
     usernameField: 'email',
     passwordField: 'password'
-  }, (username: string, password: string, done: Function) => {
+  }, (username, password, done) => {
     // Fetch matching user by email
     Users.findOne({
       where: { email: username }
-    }).then((user: any) => {
+    }).then(user => {
       // check password
       if(user !== null) {
         if(Security.cryptCompare(password, user.get('password'))) {
           // Password Success
           user.set('token', uuid.v4()).save().then(() => {
-            return done(null, { id: user.get('id'), token: user.get('token') });
+            return done(null, { id: user.get('id'), token: user.get('token') }, { messge: 'Success' });
+          }).catch(err => {
+            log.debug(err);
+            return done(null, false, { message: 'Failed to set new user token securely' });
           });
         } else {
           // Password Failed
@@ -170,15 +168,16 @@ export default function Middleware(app: express.Express) {
         // No User Found
         return done(null, false, { message: `No User exists with Email: ${username}` });
       }
-    }).catch((err: sequelize.BaseError) => {
+    }).catch(err => {
+      log.debug(err);
       return done(null, false, { message: err });
     });
   });
 
-  passport.use(localStrategy);
-
   /*=====  End of LOCAL PASSPORT STRATEGY  ======*/
+
+  passport.use(localStrategy);
 
   /*= End of MODULES =*/
   /*=============================================<<<<<*/
-}
+};

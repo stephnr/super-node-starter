@@ -1,12 +1,14 @@
 # Build Folders
-build
+bin
+
+# Coverage
+coverage
 
 # Environment
 .env
 
 # Dependency directories
 node_modules
-typings
 
 # Mac File Indexer
 .DS_Store
