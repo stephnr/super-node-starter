@@ -12,8 +12,8 @@ import { log } from '../../config';
 
 /**
 * Middleware to validate the request body for specific parameters
-* @param  {Object} reqParams   map of params to use with checkit
-* @return {Object}             security chain process
+* @param  {Object} reqParams - map of params to use with checkit
+* @return {Object}           - security chain process
 */
 exports.checkJSON = function(reqParams) {
   return (req, res, next) => {

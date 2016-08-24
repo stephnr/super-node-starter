@@ -24,10 +24,10 @@ const Users = Models.Users;
 
 /**
  * Middleware filter to verify an active user is provided
- * @param  {Object}   req  HTTP request
- * @param  {Object}   res  HTTP response
- * @param  {Function} next filter chain
- * @return {Object}        the response object
+ * @param  {Object}   req  - HTTP request
+ * @param  {Object}   res  - HTTP response
+ * @param  {Function} next - filter chain
+ * @return {Object}        - the response object
  */
 exports.requireAuth = (req, res, next) => {
   req.user = req.user || {};

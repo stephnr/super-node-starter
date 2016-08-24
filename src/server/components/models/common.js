@@ -15,7 +15,7 @@ import moment from 'moment';
 export default {
   /**
    * Returns current timestamps
-   * @return {Object} object of timestamps
+   * @return {Object} - object of timestamps
    */
   getCurrentTimestamps: () => {
     const stamp = moment().toISOString();
@@ -28,7 +28,7 @@ export default {
 
   /**
    * Returns the timestamp formatted for the database
-   * @return {String} timestamp
+   * @return {String} - timestamp
    */
   getTimestamp: () => {
     return moment().toISOString();

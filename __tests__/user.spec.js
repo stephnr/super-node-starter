@@ -19,7 +19,7 @@ const agent = require('supertest').agent();
 
 /**
  * Builds the Authorized Request
- * @param  {Object} req the mock server
+ * @param  {Object} req - the mock server
  */
 function authorizedRequest(req) {
   agent.attachCookies(req);

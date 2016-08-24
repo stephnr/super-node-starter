@@ -53,46 +53,46 @@ class ResponseHandler {
 
   /**
    * Constructs an HTTP JSON Response
-   * @param  {Object} res   the express response object
-   * @param  {any?} message the message
-   * @param  {any?} data    the data
-   * @return {JSON} json   the json response
+   * @param  {Object} res   - the express response object
+   * @param  {any?} message - the message
+   * @param  {any?} data    - the data
+   * @return {JSON} json    - the json response
    */
   SUCCESS(res, message, data) { return this.httpResHandle(res, this.CODES.SUCCESS, message, data); }
 
   /**
    * Constructs an HTTP JSON Response
-   * @param  {Object} res   the express response object
-   * @param  {any?} message the message
-   * @param  {any?} data    the data
-   * @return {JSON} json   the json response
+   * @param  {Object} res   - the express response object
+   * @param  {any?} message - the message
+   * @param  {any?} data    - the data
+   * @return {JSON} json    - the json response
    */
   CREATED(res, message, data) { return this.httpResHandle(res, this.CODES.CREATED, message, data); }
 
   /**
    * Constructs an HTTP JSON Response
-   * @param  {Object} res   the express response object
-   * @param  {any?} message the message
-   * @param  {any?} data    the data
-   * @return {JSON} json   the json response
+   * @param  {Object} res   - the express response object
+   * @param  {any?} message - the message
+   * @param  {any?} data    - the data
+   * @return {JSON} json    - the json response
    */
   ACCEPTED(res, message, data) { return this.httpResHandle(res, this.CODES.ACCEPTED, message, data); }
 
   /**
    * Constructs an HTTP JSON Response
-   * @param  {Object} res   the express response object
-   * @param  {any?} message the message
-   * @param  {any?} data    the data
-   * @return {JSON} json   the json response
+   * @param  {Object} res   - the express response object
+   * @param  {any?} message - the message
+   * @param  {any?} data    - the data
+   * @return {JSON} json    - the json response
    */
   NO_CONTENT(res, message, data) { return this.httpResHandle(res, this.CODES.NO_CONTENT, message, data); }
 
   /**
    * Constructs an HTTP JSON Response
-   * @param  {Object} res   the express response object
-   * @param  {any?} message the message
-   * @param  {any?} data    the data
-   * @return {JSON} json   the json response
+   * @param  {Object} res   - the express response object
+   * @param  {any?} message - the message
+   * @param  {any?} data    - the data
+   * @return {JSON} json    - the json response
    */
   RESET_CONTENT(res, message, data) { return this.httpResHandle(res, this.CODES.RESET_CONTENT, message, data); }
 
@@ -100,37 +100,37 @@ class ResponseHandler {
 
   /**
    * Constructs an HTTP JSON Response
-   * @param  {Object} res   the express response object
-   * @param  {any?} message the message
-   * @param  {any?} data    the data
-   * @return {JSON} json   the json response
+   * @param  {Object} res   - the express response object
+   * @param  {any?} message - the message
+   * @param  {any?} data    - the data
+   * @return {JSON} json    - the json response
    */
   MOVED_PERMANENTLY(res, message, data) { return this.httpResHandle(res, this.CODES.MOVED_PERMANENTLY, message, data); }
 
   /**
    * Constructs an HTTP JSON Response
-   * @param  {Object} res   the express response object
-   * @param  {any?} message the message
-   * @param  {any?} data    the data
-   * @return {JSON} json   the json response
+   * @param  {Object} res   - the express response object
+   * @param  {any?} message - the message
+   * @param  {any?} data    - the data
+   * @return {JSON} json    - the json response
    */
   TEMPORARY_MOVED(res, message, data) { return this.httpResHandle(res, this.CODES.TEMPORARY_MOVED, message, data); }
 
   /**
    * Constructs an HTTP JSON Response
-   * @param  {Object} res   the express response object
-   * @param  {any?} message the message
-   * @param  {any?} data    the data
-   * @return {JSON} json   the json response
+   * @param  {Object} res   - the express response object
+   * @param  {any?} message - the message
+   * @param  {any?} data    - the data
+   * @return {JSON} json    - the json response
    */
   TEMPORARY_REDIRECT(res, message, data) { return this.httpResHandle(res, this.CODES.TEMPORARY_REDIRECT, message, data); }
 
   /**
    * Constructs an HTTP JSON Response
-   * @param  {Object} res   the express response object
-   * @param  {any?} message the message
-   * @param  {any?} data    the data
-   * @return {JSON} json   the json response
+   * @param  {Object} res   - the express response object
+   * @param  {any?} message - the message
+   * @param  {any?} data    - the data
+   * @return {JSON} json    - the json response
    */
   PERMANENT_REDIRECT(res, message, data) { return this.httpResHandle(res, this.CODES.PERMANENT_REDIRECT, message, data); }
 
@@ -138,73 +138,73 @@ class ResponseHandler {
 
   /**
    * Constructs an HTTP JSON Response
-   * @param  {Object} res   the express response object
-   * @param  {any?} message the message
-   * @param  {any?} data    the data
-   * @return {JSON} json   the json response
+   * @param  {Object} res   - the express response object
+   * @param  {any?} message - the message
+   * @param  {any?} data    - the data
+   * @return {JSON} json    - the json response
    */
   BAD_REQUEST(res, message, data) { return this.httpResHandle(res, this.CODES.BAD_REQUEST, message, data); }
 
   /**
    * Constructs an HTTP JSON Response
-   * @param  {Object} res   the express response object
-   * @param  {any?} message the message
-   * @param  {any?} data    the data
-   * @return {JSON} json   the json response
+   * @param  {Object} res   - the express response object
+   * @param  {any?} message - the message
+   * @param  {any?} data    - the data
+   * @return {JSON} json    - the json response
    */
   UNAUTHORIZED(res, message, data) { return this.httpResHandle(res, this.CODES.UNAUTHORIZED, message, data); }
 
   /**
    * Constructs an HTTP JSON Response
-   * @param  {Object} res   the express response object
-   * @param  {any?} message the message
-   * @param  {any?} data    the data
-   * @return {JSON} json   the json response
+   * @param  {Object} res   - the express response object
+   * @param  {any?} message - the message
+   * @param  {any?} data    - the data
+   * @return {JSON} json    - the json response
    */
   FORBIDDEN(res, message, data) { return this.httpResHandle(res, this.CODES.FORBIDDEN, message, data); }
 
   /**
    * Constructs an HTTP JSON Response
-   * @param  {Object} res   the express response object
-   * @param  {any?} message the message
-   * @param  {any?} data    the data
-   * @return {JSON} json   the json response
+   * @param  {Object} res   - the express response object
+   * @param  {any?} message - the message
+   * @param  {any?} data    - the data
+   * @return {JSON} json    - the json response
    */
   NOT_FOUND(res, message, data) { return this.httpResHandle(res, this.CODES.NOT_FOUND, message, data); }
 
   /**
    * Constructs an HTTP JSON Response
-   * @param  {Object} res   the express response object
-   * @param  {any?} message the message
-   * @param  {any?} data    the data
-   * @return {JSON} json   the json response
+   * @param  {Object} res   - the express response object
+   * @param  {any?} message - the message
+   * @param  {any?} data    - the data
+   * @return {JSON} json    - the json response
    */
   NOT_ACCEPTABLE(res, message, data) { return this.httpResHandle(res, this.CODES.NOT_ACCEPTABLE, message, data); }
 
   /**
    * Constructs an HTTP JSON Response
-   * @param  {Object} res   the express response object
-   * @param  {any?} message the message
-   * @param  {any?} data    the data
-   * @return {JSON} json   the json response
+   * @param  {Object} res   - the express response object
+   * @param  {any?} message - the message
+   * @param  {any?} data    - the data
+   * @return {JSON} json    - the json response
    */
   UNSUPPORTED_MEDIA(res, message, data) { return this.httpResHandle(res, this.CODES.UNSUPPORTED_MEDIA, message, data); }
 
   /**
    * Constructs an HTTP JSON Response
-   * @param  {Object} res   the express response object
-   * @param  {any?} message the message
-   * @param  {any?} data    the data
-   * @return {JSON} json   the json response
+   * @param  {Object} res   - the express response object
+   * @param  {any?} message - the message
+   * @param  {any?} data    - the data
+   * @return {JSON} json    - the json response
    */
   TOO_MANY_REQUESTS(res, message, data) { return this.httpResHandle(res, this.CODES.TOO_MANY_REQUESTS, message, data); }
 
   /**
    * Constructs an HTTP JSON Response
-   * @param  {Object} res   the express response object
-   * @param  {any?} message the message
-   * @param  {any?} data    the data
-   * @return {JSON} json   the json response
+   * @param  {Object} res   - the express response object
+   * @param  {any?} message - the message
+   * @param  {any?} data    - the data
+   * @return {JSON} json    - the json response
    */
   TOKEN_EXPIRED(res, message, data) { return this.httpResHandle(res, this.CODES.TOKEN_EXPIRED, message, data); }
 
@@ -212,47 +212,47 @@ class ResponseHandler {
 
   /**
    * Constructs an HTTP JSON Response
-   * @param  {Object} res   the express response object
-   * @param  {any?} message the message
-   * @param  {any?} data    the data
-   * @return {JSON} json   the json response
+   * @param  {Object} res   - the express response object
+   * @param  {any?} message - the message
+   * @param  {any?} data    - the data
+   * @return {JSON} json    - the json response
    */
   SERVER_ERROR(res, message, data) { return this.httpResHandle(res, this.CODES.SERVER_ERROR, message, data); }
 
   /**
    * Constructs an HTTP JSON Response
-   * @param  {Object} res   the express response object
-   * @param  {any?} message the message
-   * @param  {any?} data    the data
-   * @return {JSON} json   the json response
+   * @param  {Object} res   - the express response object
+   * @param  {any?} message - the message
+   * @param  {any?} data    - the data
+   * @return {JSON} json    - the json response
    */
   NOT_IMPLEMENTED(res, message, data) { return this.httpResHandle(res, this.CODES.NOT_IMPLEMENTED, message, data); }
 
   /**
    * Constructs an HTTP JSON Response
-   * @param  {Object} res   the express response object
-   * @param  {any?} message the message
-   * @param  {any?} data    the data
-   * @return {JSON} json   the json response
+   * @param  {Object} res   - the express response object
+   * @param  {any?} message - the message
+   * @param  {any?} data    - the data
+   * @return {JSON} json    - the json response
    */
   SERVICE_UNAVAILABLE(res, message, data) { return this.httpResHandle(res, this.CODES.SERVICE_UNAVAILABLE, message, data); }
 
   /**
    * Constructs an HTTP JSON Response
-   * @param  {Object} res   the express response object
-   * @param  {any?} message the message
-   * @param  {any?} data    the data
-   * @return {JSON} json   the json response
+   * @param  {Object} res   - the express response object
+   * @param  {any?} message - the message
+   * @param  {any?} data    - the data
+   * @return {JSON} json    - the json response
    */
   UNKNOWN_ERROR(res, message, data) { return this.httpResHandle(res, this.CODES.UNKNOWN_ERROR, message, data); }
 
   /**
    * Constructs a response for the given params
-   * @param  {express.Response} res express response object
-   * @param  {number} code          http status code
-   * @param  {string} msg           message
-   * @param  {any} data             data to send
-   * @return {JSON} json            the json response
+   * @param  {express.Response} res - express response object
+   * @param  {number} code          - http status code
+   * @param  {string} msg           - message
+   * @param  {any} data             - data to send
+   * @return {JSON} json            - the json response
    */
   httpResHandle(res, code, msg, data) {
     res.status(code);

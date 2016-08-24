@@ -20,8 +20,8 @@ class UserController extends BaseController {
 
   /**
    * Registers a new user profile
-   * @param  {Object} req   the express request
-   * @param  {Object} res   the express response
+   * @param  {Object} req - the express request
+   * @param  {Object} res - the express response
    */
   signup(req, res) {
     // Save the salt used to encrypt the password
@@ -43,8 +43,9 @@ class UserController extends BaseController {
 
   /**
    * Retrieves the user profile of the logged in account
-   * @param  {Object} req   the express request
-   * @param  {Object} res   the express response
+   * @param  {Object} req - the express request
+   * @param  {Object} res - the express response
+   * @return {Object}     - the user object
    */
   getUser(req, res) {
     return Handles.SUCCESS(res, 'Found User', req.user);
