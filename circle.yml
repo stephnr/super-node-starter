@@ -2,8 +2,22 @@ machine:
   environment:
     NODE_ENV: staging
   node:
-    version: 5.1.0
+    version: 6.2.1
+dependencies:
+  pre:
+    # Install Postgresql and setup sample db
+    - if [[ ! -e /etc/postgresql ]]; then sudo service postgresql stop && sudo apt-get remove && postgresql-9.4 && sudo apt-get update; sudo apt-get install -y && postgresql-9.3 postgresql-contrib-9.3 && sudo sed -i "s/\port = 5433/port = 5432/" /etc/postgresql/9.3/main/postgresql.conf && sudo cp /etc/postgresql/9.4/main/pg_hba.conf /etc/postgresql/9.3/main/pg_hba.conf && sudo service postgresql restart && sudo -u postgres createuser ubuntu -d --superuser && createdb circle_test; fi
+    # Install and run redis
+    - if [[ ! -e redis-2.4.18/src/redis-server ]]; then wget http://redis.googlecode.com/files/redis-2.4.18.tar.gz && tar xzf redis-2.4.18.tar.gz && cd redis-2.4.18 && make; fi
+    # Install Heroku Toolbelt to run tests
+    - wget -O- https://toolbelt.heroku.com/install.sh | sh
+    # Install Test Deps
+    - npm install mocha supertest istanbul
+  cache_directories:
+    - "redis-2.4.18"
 test:
   override:
-    - npm test
-    - gulp
+    - npm run migration
+    - npm run prestart
+    - npm run coverage
+    - cp coverage/. $CIRCLE_ARTIFACTS -R
