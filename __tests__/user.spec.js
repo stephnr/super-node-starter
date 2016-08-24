@@ -6,13 +6,13 @@
 
 const assert = require('chai').assert;
 
-const Server = new (require('./app.setup'))();
+// const Server = new (require('./app.setup'))();
 const agent = require('supertest').agent();
-const mockAgent = require('superagent');
-const server = Server.instance();
+// const mockAgent = require('superagent');
+// const server = Server.instance();
 
-const jschema = require('jsonschema');
-const v = require('./schemas/users');
+// const jschema = require('jsonschema');
+// const v = require('./schemas/users');
 
 /*=====  End of MODULES  ======*/
 
