@@ -62,6 +62,7 @@
   "devDependencies": {
     "babel-eslint": "6.1.2",
     "chai": "3.5.0",
+    "graphql-tools": "0.6.4",
     "gulp": "3.9.0",
     "gulp-eslint": "3.0.1",
     "gulp-load-plugins": "0.10.0",

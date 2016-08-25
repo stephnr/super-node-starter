@@ -8,6 +8,7 @@ import _ from 'lodash';
 import Sequelize from 'sequelize';
 
 import {
+  GraphQLInt,
   GraphQLObjectType
 } from 'graphql';
 
@@ -23,6 +24,8 @@ import { attributeFields, typeMapper } from 'graphql-sequelize';
 typeMapper.mapType(type => {
   if (type instanceof Sequelize.UUID) {
     return GraphQLUUID;
+  } else if (type instanceof Sequelize.BIGINT) {
+    return GraphQLInt;
   } else if (type instanceof Sequelize.DATE) {
     return GraphQLDateTime;
   }
@@ -39,9 +42,9 @@ const UserModel = Models.Users;
 
 exports.UserType = new GraphQLObjectType({
   name:        'User',
-  description: 'A user',
+  description: 'the application user',
   fields:      _.assign(attributeFields(UserModel, {
-    exclude:   [ 'createdAt', 'updatedAt' ]
+    exclude:   [ 'password', 'createdAt', 'updatedAt' ]
   }))
 });
 
