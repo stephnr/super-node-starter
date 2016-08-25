@@ -4,7 +4,11 @@
 =            MODULES            =
 ===============================*/
 
-import { resolver } from 'graphql-sequelize';
+import _ from 'lodash';
+
+// Use resolver for an unbounded query engine
+// import { resolver } from 'graphql-sequelize';
+import log from '../../config/logging';
 
 import {
   GraphQLString,
@@ -19,9 +23,15 @@ import {
 =            USER QUERY            =
 ==================================*/
 
+/**
+ * Retrieves the user object
+ * @param  {Sequelize.Model}   UserModel - the database model
+ * @param  {GraphQLObjectType} UserType  - the user graph type
+ * @return {Object}                      - the json result
+ */
 exports.UserQuery = (UserModel, UserType) => {
   return new GraphQLObjectType({
-    name:   'UserQueryType',
+    name:   'FetchUserQuery',
     fields: {
       user: {
         type: UserType,
@@ -30,15 +40,23 @@ exports.UserQuery = (UserModel, UserType) => {
             type:        GraphQLInt,
             description: 'id of the user'
           },
-          email: {
+          token: {
             type:        GraphQLString,
-            description: 'email of the user'
+            description: 'jwt token of the user'
           }
         },
-        resolve: resolver(UserModel, {
-          // includes any associations of the user object
-          include: true
-        })
+        resolve: function(rootValue, args) {
+          return UserModel.findOne({
+            where: args
+          }).then(userRef => {
+            if(userRef) {
+              log.debug(`Found User # ${userRef.get('id')}`);
+              return _.omit(userRef.toJSON(), [ 'token' ]);
+            } else {
+              return _.omit(userRef.toJSON(), [ 'token' ]);
+            }
+          });
+        }
       }
     }
   });

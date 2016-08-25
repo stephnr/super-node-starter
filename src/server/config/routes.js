@@ -6,7 +6,7 @@
 
 import {
   RootRouter,
-  GraphRouter,
+  AuthRouter,
   UserRouter
 } from '../routes';
 
@@ -15,10 +15,10 @@ import {
 
 exports.Routes = app => {
   const rootRoutes = RootRouter(app);
-  const graphRoutes = GraphRouter(app);
+  const authRoutes = AuthRouter(app);
   const userRoutes = UserRouter(app);
 
   app.use('/', rootRoutes);
-  app.use('/graphs', graphRoutes);
+  app.use('/auth', authRoutes);
   app.use('/users', userRoutes);
 };

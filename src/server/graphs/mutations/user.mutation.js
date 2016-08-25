@@ -21,6 +21,12 @@ import {
 =            USER MUTATION            =
 ======================================*/
 
+/**
+ * Registers a new user profile
+ * @param  {Sequelize.Model}   UserModel - the database model
+ * @param  {GraphQLObjectType} UserType  - the user graph type
+ * @return {Object}                      - the json result
+ */
 exports.UserMutation = (UserModel, UserType) => {
   return new GraphQLObjectType({
     name:   'UserMutation',

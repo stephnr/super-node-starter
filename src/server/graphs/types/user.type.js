@@ -40,7 +40,9 @@ const UserModel = Models.Users;
 exports.UserType = new GraphQLObjectType({
   name:        'User',
   description: 'A user',
-  fields:      _.assign(attributeFields(UserModel))
+  fields:      _.assign(attributeFields(UserModel, {
+    exclude:   [ 'createdAt', 'updatedAt' ]
+  }))
 });
 
 /*=====  End of USER OBJECT TYPE  ======*/
