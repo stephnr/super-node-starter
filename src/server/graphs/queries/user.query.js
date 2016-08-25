@@ -6,6 +6,8 @@
 
 import _ from 'lodash';
 
+import { requireAuth } from '../../filters';
+
 // Use resolver for an unbounded query engine
 // import { resolver } from 'graphql-sequelize';
 import log from '../../config/logging';
@@ -13,7 +15,8 @@ import log from '../../config/logging';
 import {
   GraphQLString,
   GraphQLInt,
-  GraphQLObjectType
+  GraphQLObjectType,
+  GraphQLNonNull
 } from 'graphql';
 
 /*=====  End of MODULES  ======*/
@@ -41,19 +44,27 @@ exports.UserQuery = (UserModel, UserType) => {
             description: 'id of the user'
           },
           token: {
-            type:        GraphQLString,
+            type:        new GraphQLNonNull(GraphQLString),
             description: 'jwt token of the user'
           }
         },
         resolve: function(rootValue, args) {
-          return UserModel.findOne({
-            where: args
-          }).then(userRef => {
-            if(userRef) {
-              log.debug(`Found User # ${userRef.get('id')}`);
-              return _.omit(userRef.toJSON(), [ 'token' ]);
+          return requireAuth(UserModel, args.token).then(sessionUser => {
+            if(args.id) {
+              return UserModel.findOne({
+                where: { id: args.id }
+              }).then(userRef => {
+                if(userRef) {
+                  log.debug(`Found User # ${userRef.get('id')}`);
+                  // Prevent exposing token to other users
+                  userRef.token = '';
+                  return userRef.toJSON();
+                } else {
+                  return new Error('Failed to locate the user');
+                }
+              });
             } else {
-              return _.omit(userRef.toJSON(), [ 'token' ]);
+              return sessionUser.toJSON();
             }
           });
         }

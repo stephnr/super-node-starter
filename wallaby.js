@@ -1,9 +1,12 @@
 'use strict';
 
+require('dotenv').config();
+
 module.exports = () => {
   return {
     files: [
-      'src/**/*.js',
+      'config/**',
+      'bin/**',
       '__tests__/**',
       { pattern: '__tests__/**/*spec.js', ignore: true }
     ],
@@ -12,9 +15,16 @@ module.exports = () => {
       '__tests__/**/*spec.js'
     ],
 
+    bootstrap: () => {
+      require('chai').should();
+      global.expect = require('chai').expect;
+      global.assert = require('chai').assert;
+    },
+
     env: {
-      type:   'node',
-      runner: '/Users/Stephen/.node/bin/babel-node'
-    }
+      type: 'node'
+    },
+
+    testFramework: 'mocha'
   };
 };
