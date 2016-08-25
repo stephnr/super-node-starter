@@ -6,7 +6,7 @@
 
 import Checkit from 'checkit';
 import Handles from '../services/handles';
-import { log } from '../../config';
+import { log } from '../config';
 
 /*=====  End of MODULES  ======*/
 

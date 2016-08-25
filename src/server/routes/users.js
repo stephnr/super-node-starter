@@ -1,6 +1,6 @@
 'use strict';
 
-import Handles from '../components/services/handles';
+import Handles from '../services/handles';
 import log from '../config/logging';
 import passport from 'passport';
 
@@ -8,9 +8,9 @@ import passport from 'passport';
 import {
   requireAuth,
   checkJSON
-} from '../components/filters';
+} from '../filters';
 
-import rules from '../components/models/rules';
+import rules from '../models/rules';
 
 /*=============================================>>>>>
 = CONTROLLERS =

@@ -29,11 +29,11 @@ const sessionStore = new RedisStore({ url: process.env.REDISCLOUD_URL });
 = ADDITIONAL MODULES =
 ===============================================>>>>>*/
 
-import Models from '../components/models';
+import Models from '../models';
 
 /*----------  SERVICES  ----------*/
 
-import Security from '../components/services/security';
+import Security from '../services/security';
 
 /*=====  End of ADDITIONAL MODULES  ======*/
 

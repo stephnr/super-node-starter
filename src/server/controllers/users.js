@@ -1,13 +1,20 @@
 'use strict';
 
+/*===============================
+=            MODULES            =
+===============================*/
+
 import BaseController from './base';
-import Handles from '../components/services/handles';
+import Handles from '../services/handles';
 import log from '../config/logging';
 import uuid from 'node-uuid';
 
-import * as Security from '../components/services/security';
+import * as Security from '../services/security';
 
-import Models from '../components/models';
+import Models from '../models';
+
+/*=====  End of MODULES  ======*/
+
 
 /** User Router Controller */
 class UserController extends BaseController {
