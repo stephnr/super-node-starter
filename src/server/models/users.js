@@ -41,13 +41,20 @@ exports.Users = function(sequelize) {
       }
     },
     firstName: {
-      type:      Sequelize.STRING,
-      allowNull: true
+      type:         Sequelize.STRING,
+      defaultValue: '',
+      allowNull:    true
     },
     lastName: {
-      type:      Sequelize.STRING,
-      allowNull: true
+      type:         Sequelize.STRING,
+      defaultValue: '',
+      allowNull:    true
     },
+    // Example of a virtual
+    // fullName: {
+    //   type: new Sequelize.VIRTUAL(Sequelize.STRING, [ 'firstName', 'lastName' ]),
+    //   get:  () => (`${this.firstName} ${this.lastNamed}`)
+    // },
     createdAt: {
       type:         Sequelize.DATE,
       defaultValue: Sequelize.NOW,

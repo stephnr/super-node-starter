@@ -4,24 +4,16 @@
 = TYPINGS =
 ===============================================>>>>>*/
 
-import Handles from '../components/services/handles';
+import Handles from '../services/handles';
 
 /*= End of TYPINGS =*/
 /*=============================================<<<<<*/
 
 /**
  * Root API Router
- * @param {Object} app - the express application
  * @return {Object}    - the express router
  */
-exports.RootRouter = function(app) {
-  /**
-   * Root Router
-   * @name Root Controller
-   * @memberof Routes
-   * @param  {String} app    - express application object
-   * @return {Object} router - routing object for Root Router
-   */
+exports.RootRouter = function() {
   const router = require('express').Router();
 
   /**

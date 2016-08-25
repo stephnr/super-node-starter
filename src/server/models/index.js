@@ -12,7 +12,7 @@ import { Users } from './users';
 
 /*=====  End of MODELS  ======*/
 
-import { database } from '../../config';
+import { database } from '../config';
 
 /*=====  End of MODULES  ======*/
 

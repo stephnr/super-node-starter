@@ -23,14 +23,14 @@ module.exports = {
         unique:    true
       },
       firstName: {
-        type:      Sequelize.STRING,
-        field:     'firstName',
-        allowNull: true
+        type:         Sequelize.STRING,
+        defaultValue: '',
+        allowNull:    true
       },
       lastName: {
-        type:      Sequelize.STRING,
-        field:     'lastName',
-        allowNull: true
+        type:         Sequelize.STRING,
+        defaultValue: '',
+        allowNull:    true
       },
       createdAt: {
         type:         Sequelize.DATE,
