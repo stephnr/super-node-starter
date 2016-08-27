@@ -6,8 +6,7 @@
 
 import {
   RootRouter,
-  AuthRouter,
-  UserRouter
+  AuthRouter
 } from '../routes';
 
 /*= End of ROUTERS =*/
@@ -16,9 +15,7 @@ import {
 exports.Routes = app => {
   const rootRoutes = RootRouter(app);
   const authRoutes = AuthRouter(app);
-  const userRoutes = UserRouter(app);
 
   app.use('/', rootRoutes);
   app.use('/auth', authRoutes);
-  app.use('/users', userRoutes);
 };

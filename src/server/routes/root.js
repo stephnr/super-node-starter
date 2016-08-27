@@ -6,6 +6,10 @@
 
 import Handles from '../services/handles';
 
+import graphqlHTTP from 'express-graphql';
+
+import APIScheme from '../graphs';
+
 /*= End of TYPINGS =*/
 /*=============================================<<<<<*/
 
@@ -17,15 +21,16 @@ exports.RootRouter = function() {
   const router = require('express').Router();
 
   /**
-   * Sample Hello World route
-   * @function
-   * @param  {String} '/'   - url route
-   * @param  {Function}     - (req, res) contains the request and response of the URL
-   * @return {String}       - json response
+   * Graph Page
+   * @param  {String} '/' - url route
+   * @param  {Function}   - GraphQL HTTP Handler
+   * @return {String}     - json response
    */
-  router.get('/', (req, res) => {
-    return Handles.SUCCESS(res, 'Welcome to the RunTheCall API');
-  });
+  router.use('/', graphqlHTTP(req => ({
+    schema:     APIScheme,
+    rootValue:  { session: req.session, user: req.user },
+    graphiql:   (process.env.NODE_ENV === 'development')
+  })));
 
   /**
    * Represents a successful logout event
