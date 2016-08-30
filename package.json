@@ -11,6 +11,7 @@
     "migration": "sequelize db:migrate",
     "prestart": "babel src -d bin",
     "start": "heroku local web",
+    "deploy": "docker-compose up -d --remove-orphans --build && docker-compose logs -f",
     "develop": "heroku local web --procfile=Procfile_DV",
     "coverage": "heroku local cover --procfile=Procfile_DV",
     "debug": "node-debug src/server/web.js",

@@ -52,20 +52,8 @@ apm install linter-tslint
 
 #### Local Docker Deployment
 
-**a. Build the Docker Image**
+Build using Docker Compose by executing the following command:
 
 ```sh
-docker build -t super-node-starter .
-```
-
-**b. Provide a `.env` file (copy the template) and provider you own values**
-
-```sh
-cp .env.example .env
-```
-
-**c. Run the app**
-
-```sh
-docker run -d -P --name web super-node-starter
+npm run deploy
 ```

@@ -1,13 +1,15 @@
 {
   "name": "Super Node Starter",
-  "description": "a simple starter project for NodeJS Express apps",
+  "description": "a nodejs starter template for deploying graph based apis",
+  "image": "heroku/nodejs",
   "keywords": [
     "node",
     "es6",
     "es7",
     "javascript",
     "template",
-    "starter"
+    "starter",
+    "graphql"
   ],
   "website": "https://github.com/stephn-r/super-node-starter",
   "repository": "https://github.com/stephn-r/super-node-starter",
@@ -19,7 +21,7 @@
       "required": true
     },
     "BCRYPT_SALT": {
-      "description": "The salt to use when running bcrypt-nodejs",
+      "description": "The password salt to use when running bcrypt-nodejs encryptions",
       "generator": "secret",
       "required": true
     },
@@ -28,14 +30,9 @@
       "value": "*",
       "required": true
     },
-    "CONSOLE_LOGGING": {
-      "description": "Boolean flag to enable/disable console logging",
-      "value": "false",
-      "required": true
-    },
     "LOGGING_LEVEL": {
       "description": "Level of Winston Logger to enable (e.g. info, debug, warn, error)",
-      "value": "error",
+      "value": "debug",
       "require": true
     },
     "DATABASE_ENGINE": {
@@ -43,9 +40,9 @@
       "value": "postgres",
       "require": true
     },
-    "DATABASE_POOL_MIN": {
-      "description": "Used by sequelize to control how many database connections to manage",
-      "value": "2",
+    "DATABASE_POOL_IDLE": {
+      "description": "Used by sequelize to specify the idle time of the database",
+      "value": "0",
       "require": true
     },
     "DATABASE_POOL_MAX": {
@@ -53,14 +50,9 @@
       "value": "10",
       "require": true
     },
-    "DATABASE_POOL_IDLE": {
-      "description": "Used by sequelize to specify the idle time of the database",
-      "value": "0",
-      "require": true
-    },
-    "PASSWORD_RESET_THRESHOLD": {
-      "description": "Reset threshold for passwords (in minutes)",
-      "value": "5",
+    "DATABASE_POOL_MIN": {
+      "description": "Used by sequelize to control how many database connections to manage",
+      "value": "2",
       "require": true
     },
     "SECRET": {
@@ -75,7 +67,6 @@
       "size": "free"
     }
   },
-  "image": "heroku/nodejs",
   "addons": [
     "heroku-postgresql:hobby-dev",
     "rediscloud:30",
