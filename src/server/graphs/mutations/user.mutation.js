@@ -4,7 +4,7 @@
 =            MODULES            =
 ===============================*/
 
-import _ from 'lodash';
+import * as _ from 'lodash';
 import uuid from 'node-uuid';
 import log from '../../config/logging';
 import * as Security from '../../services/security';

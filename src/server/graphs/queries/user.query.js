@@ -52,6 +52,7 @@ exports.user = {
         return UserModel.findOne({
           where: { id: args.id }
         }).then(userRef => {
+          console.log(userRef);
           if(userRef) {
             log.debug(`Found User # ${userRef.get('id')}`);
             // Prevent exposing token to other users

@@ -4,8 +4,8 @@
 =            MODULES            =
 ===============================*/
 
-import _ from 'lodash';
-import Sequelize from 'sequelize';
+import * as _ from 'lodash';
+import * as Sequelize from 'sequelize';
 
 import {
   GraphQLInt,

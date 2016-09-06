@@ -40,4 +40,4 @@ EXPOSE 80
 ###############################
 
 # 11. Run the application specific build/run commands
-CMD node bin/server/web.js
+CMD ["node", "bin/server/web.js"]
