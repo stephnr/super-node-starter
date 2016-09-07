@@ -6,7 +6,7 @@
 ===============================*/
 
 const mockServer = require('graphql-tools').mockServer;
-const UserSchema = require('../bin/server/graphs/schemas/user.schema').UserSchema;
+const UserSchema = require('../bin/src/server/graphs').default;
 
 /*=====  End of MODULES  ======*/
 

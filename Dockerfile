@@ -1,10 +1,10 @@
 # 1. Pulling the docker images we need
-FROM node:5.11.0
-MAINTAINER Stephen Rodriguez <@stephnr>
+FROM node:6.4.0
+MAINTAINER Stephen Rodriguez <steprodriguez10@gmail.com>
 
 # 2. Labelling the docker image version/details
 LABEL version="1.0"
-LABEL description="Simple NodeJS Dockerfile. Executes `npm start` to run your app"
+LABEL description="a nodejs starter template for deploying graph based apis"
 
 ###################################
 ######      SETUP STACK      ######
@@ -26,7 +26,7 @@ COPY . /usr/src/app
 RUN npm install
 
 # 9. Your Custom Build Steps
-# {{ CUSTOM BUILD STEPS GO HERE }}
+RUN npm run prestart
 
 ###################################
 ######      EXPOSE PORT      ######
@@ -40,4 +40,4 @@ EXPOSE 80
 ###############################
 
 # 11. Run the application specific build/run commands
-CMD [ "node", "start" ]
+CMD ["node", "bin/server/web.js"]
