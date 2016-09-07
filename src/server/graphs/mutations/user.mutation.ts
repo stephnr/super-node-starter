@@ -5,13 +5,14 @@
 ===============================*/
 
 import * as _ from 'lodash';
-import uuid from 'node-uuid';
-import log from '../../config/logging';
-import * as Security from '../../services/security';
+import * as uuid from 'node-uuid';
+import {log} from '../../config';
+import {Security} from '../../services';
 
 import {
   GraphQLNonNull,
-  GraphQLString
+  GraphQLString,
+  GraphQLFieldConfig
 } from 'graphql';
 
 import { UserType } from '../types';
@@ -32,13 +33,13 @@ const UserModel = Models.Users;
  * @param  {GraphQLObjectType} UserType  - the user graph type
  * @return {Object}                      - the json result
  */
-exports.createUser = {
+const createUser: GraphQLFieldConfig = {
   type: UserType,
   args: {
     email:    { type: new GraphQLNonNull(GraphQLString) },
     password: { type: new GraphQLNonNull(GraphQLString) }
   },
-  resolve: function(rootValue, args) {
+  resolve: function(rootValue: any, args: any) {
     let user = _.extend(args, {
       password: Security.encrypt(args.password, process.env.BCRYPT_SALT),
       token:    uuid.v4()
@@ -54,3 +55,4 @@ exports.createUser = {
 
 /*=====  End of USER MUTATION  ======*/
 
+export default createUser;

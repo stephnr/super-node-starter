@@ -8,12 +8,13 @@ import { requireAuth } from '../../filters';
 
 // Use resolver for an unbounded query engine
 // import { resolver } from 'graphql-sequelize';
-import log from '../../config/logging';
+import {log} from '../../config';
 
 import {
   GraphQLString,
   GraphQLInt,
-  GraphQLNonNull
+  GraphQLNonNull,
+  GraphQLFieldConfig
 } from 'graphql';
 
 import { UserType } from '../types';
@@ -34,7 +35,7 @@ const UserModel = Models.Users;
  * @param  {GraphQLObjectType} UserType  - the user graph type
  * @return {Object}                      - the json result
  */
-exports.user = {
+const userQuery: GraphQLFieldConfig = {
   type: UserType,
   args: {
     id: {
@@ -46,9 +47,9 @@ exports.user = {
       description: 'jwt token of the user'
     }
   },
-  resolve: function(rootValue, args) {
+  resolve: function(rootValue: any, args: any) {
     return requireAuth(UserModel, args.token).then(sessionUser => {
-      if(args.id) {
+      if (args.id) {
         return UserModel.findOne({
           where: { id: args.id }
         }).then(userRef => {
@@ -68,6 +69,8 @@ exports.user = {
     });
   }
 };
+
+export default userQuery;
 
 /*=====  End of USER QUERY  ======*/
 

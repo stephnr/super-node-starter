@@ -6,15 +6,20 @@
   "engines": {
     "node": "6.x"
   },
+  "peerDependencies": {
+    "typescript": "1.8.10"
+  },
   "scripts": {
     "preinstall": "npm i -g sequelize-cli",
     "migration": "sequelize db:migrate",
-    "prestart": "babel src -d bin",
+    "tsc": "tsc",
+    "tsc:dev": "tsc --sourcemap",
+    "prestart": "npm run migration && tsc",
     "start": "heroku local web",
     "deploy": "docker-compose up -d --remove-orphans --build && docker-compose logs -f",
-    "develop": "heroku local web --procfile=Procfile_DV",
+    "develop": "heroku local tsc,web --procfile=Procfile_DV",
     "coverage": "heroku local cover --procfile=Procfile_DV",
-    "debug": "node-debug src/server/web.js",
+    "debug": "node-debug bin/src/server/web.js",
     "pretest": "npm run prestart",
     "test": "mocha __tests__/"
   },

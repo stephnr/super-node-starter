@@ -1,2 +1,3 @@
-web: nodemon src/server/web.js --exec babel-node
+tsc: tsc --sourcemap -w
+web: nodemon bin/src/server/web.js --exec babel-node
 cover: istanbul cover _mocha __tests__/
