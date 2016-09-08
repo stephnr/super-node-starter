@@ -7,7 +7,7 @@ import {
 import user from './user.mutation';
 
 const mutations: GraphQLFieldConfigMap = {
-  user: user
+  createUser: user
 };
 
 export default mutations;

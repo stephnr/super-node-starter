@@ -13,7 +13,7 @@
     "preinstall": "npm i -g sequelize-cli",
     "migration": "sequelize db:migrate",
     "tsc": "tsc",
-    "tsc:dev": "tsc --sourcemap",
+    "tsc:dev": "tsc --sourceMap --outDir bin",
     "prestart": "npm run migration && tsc",
     "start": "heroku local web",
     "deploy": "docker-compose up -d --remove-orphans --build && docker-compose logs -f",
