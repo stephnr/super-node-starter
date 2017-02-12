@@ -13,7 +13,7 @@ Please refer to the [CONTRIBUTING.md](https://github.com/stephn-r/super-node-sta
 **a. Install dependencies**
 
 ```sh
-npm install
+yarn install
 ```
 
 **b. Provide a `.env` file (copy the template) and provide you own values**
@@ -36,18 +36,6 @@ Note: You may want to install an editor plugin to automatically do this for you 
 
 ```sh
 npm start
-```
-
-**e. Linting your code while developing**
-
-Linting is dealt with by eslint, jshint and tslint. There are config files for those in the repo. You should install editor plugins to do this easily and automatically for you as you code and save files (e.g. for atom):
-
-```sh
-apm install eslint
-apm install linter
-apm install linter-jshint
-apm install linter-eslint
-apm install linter-tslint
 ```
 
 #### Local Docker Deployment

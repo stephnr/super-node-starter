@@ -1,8 +1,0 @@
-{
-  "resolution": "main",
-  "tree": {
-    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/11283aeaabe629e8f6a67d651be726bcd7faa0c3/helmet/helmet.d.ts",
-    "raw": "registry:dt/helmet#0.0.0+20160512043842",
-    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/11283aeaabe629e8f6a67d651be726bcd7faa0c3/helmet/helmet.d.ts"
-  }
-}

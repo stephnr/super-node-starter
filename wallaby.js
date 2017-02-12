@@ -7,19 +7,13 @@ module.exports = () => {
     files: [
       'config/**',
       'bin/**',
-      '__tests__/**',
-      { pattern: '__tests__/**/*spec.js', ignore: true }
+      'test/**',
+      { pattern: 'test/**/*spec.js', ignore: true }
     ],
 
     tests: [
-      '__tests__/**/*spec.js'
+      'test/**/*spec.js'
     ],
-
-    bootstrap: () => {
-      require('chai').should();
-      global.expect = require('chai').expect;
-      global.assert = require('chai').assert;
-    },
 
     env: {
       type: 'node'

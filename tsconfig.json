@@ -1,39 +1,31 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
-    "inlineSourceMap": false,
-    "inlineSources": false,
+    "inlineSourceMap": true,
+    "inlineSources": true,
     "listFiles": false,
     "module": "commonjs",
     "moduleResolution": "node",
     "noEmit": false,
     "noEmitOnError": false,
     "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": false,
-    "noImplicitReturns": false,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
     "outDir": "bin",
-    "preserveConstEnums": true,
+    "preserveConstEnums": false,
     "removeComments": true,
-    "stripInternal": true,
-    "target": "es5"
+    "target": "es2016",
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   },
+  "include": [
+    "src/**/*.ts"
+  ],
   "exclude": [
-    "__tests__",
-    "_gulp",
     "bin",
     "migrations",
     "node_modules",
-    "typings",
-    "gulpfile.js",
     "wallaby.js"
-  ],
-  "filesGlob": [
-    "src/**/*.ts"
-  ],
-  "atom": {
-    "rewriteTsconfig": true
-  }
+  ]
 }

@@ -2,7 +2,7 @@ machine:
   environment:
     NODE_ENV: staging
   node:
-    version: 6.2.1
+    version: 7.5.0
 dependencies:
   pre:
     # Install Postgresql and setup sample db
@@ -11,13 +11,5 @@ dependencies:
     - if [[ ! -e redis-2.4.18/src/redis-server ]]; then wget http://redis.googlecode.com/files/redis-2.4.18.tar.gz && tar xzf redis-2.4.18.tar.gz && cd redis-2.4.18 && make; fi
     # Install Heroku Toolbelt to run tests
     - wget -O- https://toolbelt.heroku.com/install.sh | sh
-    # Install Test Deps
-    - npm install mocha supertest istanbul
   cache_directories:
     - "redis-2.4.18"
-test:
-  override:
-    - npm run migration
-    - npm run prestart
-    - npm run coverage
-    - cp coverage/. $CIRCLE_ARTIFACTS -R

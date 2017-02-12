@@ -1,32 +1,29 @@
-# 1. Pulling the docker images we need
-FROM node:6.4.0
+# Pulling the docker images we need
+FROM node:latest
 MAINTAINER Stephen Rodriguez <steprodriguez10@gmail.com>
 
-# 2. Labelling the docker image version/details
+# Labelling the docker image version/details
 LABEL version="1.0"
-LABEL description="a nodejs starter template for deploying graph based apis"
+LABEL description="a nodejs starter template for deploying apis built in typescript"
 
 ###################################
 ######      SETUP STACK      ######
 ###################################
 
-# 3. Setup the application folder
+# Setup the application folder
 RUN mkdir -p /usr/src/app
 
-# 4. Change our working directory
+# Change our working directory
 WORKDIR /usr/src/app
 
-# 6. Provide Environment Properties
-ENV NODE_ENV=production
-
-# 7. Copy project files into the application folder
+# Copy project files into the application folder
 COPY . /usr/src/app
 
-# 8. Install Dependencies (not devDependencies)
-RUN npm install
+ENV PORT=80
 
-# 9. Your Custom Build Steps
-RUN npm run prestart
+# Install Dependencies (not devDependencies)
+RUN npm install -g yarn
+RUN yarn install
 
 ###################################
 ######      EXPOSE PORT      ######
@@ -40,4 +37,4 @@ EXPOSE 80
 ###############################
 
 # 11. Run the application specific build/run commands
-CMD ["node", "bin/server/web.js"]
+CMD ["node", "bin/web.js"]

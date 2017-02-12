@@ -1,5 +1,13 @@
-api:
-  build: .
-  ports:
-    - "80:5000"
-  env_file: .env
+version: '2'
+
+services:
+  api:
+    build: .
+    ports:
+      - "80:8080"
+    env_file: .docker.env
+    links:
+      - "redis"
+      - "postgres"
+  pg:
+    image: "postgres:latestg"

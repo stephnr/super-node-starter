@@ -1,12 +1,13 @@
 {
   "name": "Super Node Starter",
-  "description": "a nodejs starter template for deploying graph based apis",
+  "description": "a nodejs starter template for deploying node based api servers",
   "image": "heroku/nodejs",
   "keywords": [
     "node",
     "es6",
     "es7",
     "javascript",
+    "typescript",
     "template",
     "starter",
     "graphql"
@@ -15,11 +16,6 @@
   "repository": "https://github.com/stephn-r/super-node-starter",
   "success_url": "/",
   "env": {
-    "NODE_ENV": {
-      "description": "The environment to execute Node on",
-      "value": "production",
-      "required": true
-    },
     "BCRYPT_SALT": {
       "description": "The password salt to use when running bcrypt-nodejs encryptions",
       "generator": "secret",
@@ -29,11 +25,6 @@
       "description": "Allowed URLs for Cross Origin Resource Sharing",
       "value": "*",
       "required": true
-    },
-    "LOGGING_LEVEL": {
-      "description": "Level of Winston Logger to enable (e.g. info, debug, warn, error)",
-      "value": "debug",
-      "require": true
     },
     "DATABASE_ENGINE": {
       "description": "Used by sequelize to determine which dialect to use",
@@ -55,6 +46,21 @@
       "value": "2",
       "require": true
     },
+    "DATABASE_SSL": {
+      "description": "Using SSL on Database connector",
+      "value": "false",
+      "require": true
+    },
+    "LOGGING_LEVEL": {
+      "description": "Level of Winston Logger to enable (e.g. info, debug, warn, error)",
+      "value": "debug",
+      "require": true
+    },
+    "NODE_ENV": {
+      "description": "The environment to execute Node on",
+      "value": "staging",
+      "required": true
+    },
     "SECRET": {
       "description": "Secret token used in constructing secure sessions",
       "generator": "secret",
@@ -69,7 +75,6 @@
   },
   "addons": [
     "heroku-postgresql:hobby-dev",
-    "rediscloud:30",
     "papertrail:choklad"
   ]
 }

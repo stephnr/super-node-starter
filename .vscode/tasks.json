@@ -8,8 +8,25 @@
     "suppressTaskName": true,
     "tasks": [
         {
-            "taskName": "compile",
-            "args": ["run", "tsc:dev"]
+            "taskName": "build",
+            "args": ["run", "build"],
+            "isBuildCommand": true
+        },
+        {
+            "taskName": "start",
+            "args": ["run", "start"]
+        },
+        {
+            "taskName": "develop",
+            "args": ["run", "develop"]
+        },
+        {
+            "taskName": "lint",
+            "args": ["run", "lint"]
+        },
+        {
+            "taskName": "scan",
+            "args": ["run", "scan"]
         }
     ]
 }
