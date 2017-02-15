@@ -10,8 +10,7 @@
     "predevelop": "yarn run build",
     "develop": "heroku local -f Procfile_DV tsc web",
     "lint": "tslint src/",
-    "scan": "nsp check",
-    "test": "heroku local -f Procfile_DV test"
+    "scan": "nsp check"
   },
   "repository": {
     "type": "git",
@@ -43,6 +42,7 @@
     "cli-spinners": "^1.0.0",
     "compression": "^1.6.2",
     "cors": "^2.8.1",
+    "cross-env": "^3.1.4",
     "dotenv": "^4.0.0",
     "express": "^4.14.1",
     "helmet": "^3.4.0",

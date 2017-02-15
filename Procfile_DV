@@ -1,3 +1,0 @@
-tsc: tsc -w
-web: nodemon bin/web.js
-test: mocha test/**
